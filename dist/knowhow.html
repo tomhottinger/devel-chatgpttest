@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KnowHow – Tom was here</title>
+  <style>
+    :root {
+      --bg: #0b1b2b;
+      --panel: #11263a;
+      --accent: #f8c102;
+      --text: #e8eef4;
+      --muted: #94a4b5;
+      --link: #7dd1ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", sans-serif;
+      background: radial-gradient(120% 120% at 10% 20%, rgba(255,255,255,0.08), transparent),
+                  radial-gradient(80% 80% at 90% 10%, rgba(255,255,255,0.06), transparent),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px;
+    }
+    header {
+      max-width: 960px;
+      margin: 0 auto 18px auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .badge {
+      background: var(--accent);
+      color: #1b1b1b;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+    .updated {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .parent {
+      color: var(--link);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .parent:hover {
+      color: var(--accent);
+    }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+    }
+    section {
+      margin-bottom: 20px;
+    }
+    section h2 {
+      margin: 0 0 8px 0;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    ul {
+      list-style: none;
+      padding-left: 16px;
+      margin: 0;
+    }
+    .subfolders {
+      border-left: 2px solid rgba(255,255,255,0.07);
+      padding-left: 12px;
+    }
+    .folder-link {
+      margin: 6px 0;
+      font-weight: 600;
+    }
+    .folder-link a {
+      color: var(--link);
+      text-decoration: none;
+    }
+    .folder-link a:hover {
+      color: var(--accent);
+    }
+    .bookmark {
+      margin: 8px 0;
+    }
+    .bookmark a {
+      color: var(--link);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .bookmark a:hover {
+      color: var(--accent);
+    }
+    .desc {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .muted {
+      color: var(--muted);
+    }
+    @media (max-width: 640px) {
+      body {
+        padding: 14px;
+      }
+      h1 {
+        font-size: 22px;
+      }
+      main {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="badge">Bookmarks</div>
+    <div>
+      <h1>KnowHow</h1>
+      <div class="updated">Updated 2026-01-08 16:29 UTC</div>
+    </div>
+    <a class="parent" href="floccus-gict.html">↩ Zurück</a>
+  </header>
+  <main>
+    <section>
+      <h2>Bookmarks</h2>
+      <ul class="bookmarks"><li class="bookmark"><a href="https://wiki.gict.ch/" target="_blank" rel="noreferrer noopener">Wiki | GICT Wiki</a></li><li class="bookmark"><a href="https://dms.gict.ch/SitePages/Home.aspx" target="_blank" rel="noreferrer noopener">GICT - Home</a></li><li class="bookmark"><a href="https://dms.gict.ch/personal/_layouts/15/WopiFrame2.aspx?sourcedoc=%7B12D9D3E3-0C94-4037-9B2A-6F1F3D211727%7D&amp;file=GICT-Organisationshandbuch.pdf&amp;action=default&amp;IsList=1&amp;ListId=%7B22928265-AC99-476E-B581-F7F52BC22C96%7D&amp;ListItemId=20" target="_blank" rel="noreferrer noopener">GICT-Organisationshandbuch.pdf</a></li><li class="bookmark"><a href="https://dms.gict.ch/it-management/_layouts/15/WopiFrame.aspx?sourcedoc=%7B4DF46BA6-03A7-4E9B-865F-B2AEF313929B%7D&amp;file=Kommunikations-%20und%20Alarmierungskonzept.docx&amp;action=default&amp;DefaultItemOpen=1" target="_blank" rel="noreferrer noopener">Kommunikations- &amp; Alarmierungskonzept</a></li><li class="bookmark"><a href="https://dms.gict.ch/sites/Projects/_layouts/15/WopiFrame2.aspx?sourcedoc=%7BF4EE3AA2-785C-4E02-9E98-4C471C1BE166%7D&amp;file=Projektmanagement-Handbuch%20GICT%20v0_7.docx&amp;action=default&amp;DefaultItemOpen=1" target="_blank" rel="noreferrer noopener">Projektmanagement-Handbuch GICT v0_7.docx</a></li><li class="bookmark"><a href="https://dms.gict.ch/IT-Betrieb/_layouts/15/WopiFrame2.aspx?sourcedoc=%7B1DD14BAE-5DEB-43A0-B7A9-EC5A68DE2C41%7D&amp;file=Kontaktverzeichnis%20IT-Ansprechpartner%20GICT.XLSX&amp;action=default&amp;DefaultItemOpen=1" target="_blank" rel="noreferrer noopener">Kontaktverzeichnis IT-Ansprechpartner GICT.XLSX</a></li><li class="bookmark"><a href="https://dms.gict.ch/IT-Betrieb/dokus/Forms/Betrebshandbcher.aspx#InplviewHash24a10ad0-6ffb-435c-b613-822ec0d66951=" target="_blank" rel="noreferrer noopener">Dokumentationen - Betriebshandbücher</a></li><li class="bookmark"><a href="https://dms.gict.ch/IT-Betrieb/dokus/Forms/Assetdokus.aspx" target="_blank" rel="noreferrer noopener">Asset Dokus</a></li><li class="bookmark"><a href="https://wiki.gict.ch/de/20_systemtechnik/application/howto/VDI8_Images_vorbereiten" target="_blank" rel="noreferrer noopener">VDI8 Images vorbereiten | GICT Wiki</a></li><li class="bookmark"><a href="https://wiki.gict.ch/de/20_systemtechnik/client/doku/gpo_alle_kunden_aufbau" target="_blank" rel="noreferrer noopener">GPO Aufbau alle Kunden | GICT Wiki</a></li><li class="bookmark"><a href="https://dms.gict.ch/vorlagen/Forms/AllItems.aspx" target="_blank" rel="noreferrer noopener">GICT - Vorlagen - Alle Dokumente</a></li><li class="bookmark"><a href="https://dms.gict.ch/crm/Lists/Kunden%20GICT/AllItems.aspx" target="_blank" rel="noreferrer noopener">Kunden GICT - Alle Elemente</a></li><li class="bookmark"><a href="https://dms.gict.ch/IT-Betrieb/_layouts/15/WopiFrame2.aspx?sourcedoc=%7B25D85215-9F0A-4127-8DF5-95087A39A218%7D&amp;file=Netzliste.xlsx&amp;action=default&amp;DefaultItemOpen=1" target="_blank" rel="noreferrer noopener">Netzliste.xlsx</a></li><li class="bookmark"><a href="https://wiki.gict.ch/de/20_systemtechnik/client/doku/gpo_alle_kunden_aufbau" target="_blank" rel="noreferrer noopener">GPO Aufbau alle Kunden | GICT Wiki</a></li></ul>
+    </section>
+    <section>
+      <h2>Ordner</h2>
+      <p class="muted">Keine Unterordner.</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cloud – Tom was here</title>
+  <style>
+    :root {
+      --bg: #0b1b2b;
+      --panel: #11263a;
+      --accent: #f8c102;
+      --text: #e8eef4;
+      --muted: #94a4b5;
+      --link: #7dd1ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", sans-serif;
+      background: radial-gradient(120% 120% at 10% 20%, rgba(255,255,255,0.08), transparent),
+                  radial-gradient(80% 80% at 90% 10%, rgba(255,255,255,0.06), transparent),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px;
+    }
+    header {
+      max-width: 960px;
+      margin: 0 auto 18px auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .badge {
+      background: var(--accent);
+      color: #1b1b1b;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+    .updated {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .parent {
+      color: var(--link);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .parent:hover {
+      color: var(--accent);
+    }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+    }
+    section {
+      margin-bottom: 20px;
+    }
+    section h2 {
+      margin: 0 0 8px 0;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    ul {
+      list-style: none;
+      padding-left: 16px;
+      margin: 0;
+    }
+    .subfolders {
+      border-left: 2px solid rgba(255,255,255,0.07);
+      padding-left: 12px;
+    }
+    .folder-link {
+      margin: 6px 0;
+      font-weight: 600;
+    }
+    .folder-link a {
+      color: var(--link);
+      text-decoration: none;
+    }
+    .folder-link a:hover {
+      color: var(--accent);
+    }
+    .bookmark {
+      margin: 8px 0;
+    }
+    .bookmark a {
+      color: var(--link);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .bookmark a:hover {
+      color: var(--accent);
+    }
+    .desc {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .muted {
+      color: var(--muted);
+    }
+    @media (max-width: 640px) {
+      body {
+        padding: 14px;
+      }
+      h1 {
+        font-size: 22px;
+      }
+      main {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="badge">Bookmarks</div>
+    <div>
+      <h1>Cloud</h1>
+      <div class="updated">Updated 2026-01-08 16:29 UTC</div>
+    </div>
+    <a class="parent" href="ivo-s-order.html">↩ Zurück</a>
+  </header>
+  <main>
+    <section>
+      <h2>Bookmarks</h2>
+      <ul class="bookmarks"><li class="bookmark"><a href="https://www.office.com/" target="_blank" rel="noreferrer noopener">Login | Microsoft 365</a></li><li class="bookmark"><a href="https://pypi.org/project/webssh/" target="_blank" rel="noreferrer noopener">ocker</a></li></ul>
+    </section>
+    <section>
+      <h2>Ordner</h2>
+      <ul class="subfolders"><li class="folder-link"><a href="usu.html">USU</a></li></ul>
+    </section>
+  </main>
+</body>
+</html>

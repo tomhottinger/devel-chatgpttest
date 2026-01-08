@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GICT – Tom was here</title>
+  <style>
+    :root {
+      --bg: #0b1b2b;
+      --panel: #11263a;
+      --accent: #f8c102;
+      --text: #e8eef4;
+      --muted: #94a4b5;
+      --link: #7dd1ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", sans-serif;
+      background: radial-gradient(120% 120% at 10% 20%, rgba(255,255,255,0.08), transparent),
+                  radial-gradient(80% 80% at 90% 10%, rgba(255,255,255,0.06), transparent),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px;
+    }
+    header {
+      max-width: 960px;
+      margin: 0 auto 18px auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .badge {
+      background: var(--accent);
+      color: #1b1b1b;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+    .updated {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .parent {
+      color: var(--link);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .parent:hover {
+      color: var(--accent);
+    }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+    }
+    section {
+      margin-bottom: 20px;
+    }
+    section h2 {
+      margin: 0 0 8px 0;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    ul {
+      list-style: none;
+      padding-left: 16px;
+      margin: 0;
+    }
+    .subfolders {
+      border-left: 2px solid rgba(255,255,255,0.07);
+      padding-left: 12px;
+    }
+    .folder-link {
+      margin: 6px 0;
+      font-weight: 600;
+    }
+    .folder-link a {
+      color: var(--link);
+      text-decoration: none;
+    }
+    .folder-link a:hover {
+      color: var(--accent);
+    }
+    .bookmark {
+      margin: 8px 0;
+    }
+    .bookmark a {
+      color: var(--link);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .bookmark a:hover {
+      color: var(--accent);
+    }
+    .desc {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .muted {
+      color: var(--muted);
+    }
+    @media (max-width: 640px) {
+      body {
+        padding: 14px;
+      }
+      h1 {
+        font-size: 22px;
+      }
+      main {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="badge">Bookmarks</div>
+    <div>
+      <h1>GICT</h1>
+      <div class="updated">Updated 2026-01-08 16:29 UTC</div>
+    </div>
+    <a class="parent" href="ivo-s-order.html">↩ Zurück</a>
+  </header>
+  <main>
+    <section>
+      <h2>Bookmarks</h2>
+      <ul class="bookmarks"><li class="bookmark"><a href="https://vdi8.gict.ch/" target="_blank" rel="noreferrer noopener">VMware Horizon GICT</a></li><li class="bookmark"><a href="https://pmp.gict.ch/authentication/login" target="_blank" rel="noreferrer noopener">Netwrix Password Secure</a></li><li class="bookmark"><a href="https://wiki.gict.ch/" target="_blank" rel="noreferrer noopener">Wiki | GICT Wiki</a></li><li class="bookmark"><a href="https://dms.gict.ch/SitePages/Home.aspx" target="_blank" rel="noreferrer noopener">GICT - Home</a></li><li class="bookmark"><a href="https://abaweb.wegtreu.ch/oauth/oauth2/v1/auth?response_type=code&amp;client_id=myabacus&amp;redirect_uri=%2Fportal%2Fmyabacus%2Foauthcb&amp;scope=abacus+openid&amp;state=UK4Z6LF6BZ2XFFPU&amp;response_mode=form_post" target="_blank" rel="noreferrer noopener">Abacus ERP</a></li><li class="bookmark"><a href="https://portal.gict.ch/wm/app-ServiceDesk/landing-page/c5810ace-8697-e611-dd86-60a44ca921d9" target="_blank" rel="noreferrer noopener">Home :: Matrix42</a></li><li class="bookmark"><a href="https://gict.atlassian.net/jira/software/c/projects/APS/list" target="_blank" rel="noreferrer noopener">Jira - CLS: Software</a></li><li class="bookmark"><a href="https://10.64.35.235/p/app/#!/adom/logview/logs/0/traffic/10" target="_blank" rel="noreferrer noopener">FortiAnalyzer-VM64: 10.64.35.235</a></li><li class="bookmark"><a href="https://10.64.35.217:444/login?redir=%2Fng" target="_blank" rel="noreferrer noopener">10.64.35.217:444/login?redir=%2Fng</a></li></ul>
+    </section>
+    <section>
+      <h2>Ordner</h2>
+      <ul class="subfolders"><li class="folder-link"><a href="prtg-2.html">PRTG</a></li><li class="folder-link"><a href="gict-dokus-2.html">GICT Dokus</a></li><li class="folder-link"><a href="vcenter-3.html">VCenter</a></li><li class="folder-link"><a href="usu-2.html">USU</a></li><li class="folder-link"><a href="cloud-2.html">Cloud</a></li><li class="folder-link"><a href="know-how-2.html">Know-How</a></li><li class="folder-link"><a href="privat.html">PRIVAT</a></li></ul>
+    </section>
+  </main>
+</body>
+</html>
