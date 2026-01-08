@@ -9,6 +9,7 @@ import argparse
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from html import escape
+import json
 from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
@@ -85,8 +86,8 @@ def _format_timestamp(value: str | None) -> str | None:
         return value
 
 
-def _render_bookmark(bookmark: Bookmark) -> str:
-    desc = f'<div class="desc">{escape(bookmark.desc)}</div>' if bookmark.desc else ""
+def _render_bookmark_tile(bookmark: Bookmark) -> str:
+    desc = f'<div class="tile-desc">{escape(bookmark.desc)}</div>' if bookmark.desc else ""
     added = _format_timestamp(bookmark.added)
     modified = _format_timestamp(bookmark.modified)
     meta_parts = []
@@ -94,41 +95,85 @@ def _render_bookmark(bookmark: Bookmark) -> str:
         meta_parts.append(f"added {added}")
     if modified:
         meta_parts.append(f"updated {modified}")
-    meta = ""
-    if meta_parts:
-        meta = f'<div class="meta">{" · ".join(meta_parts)}</div>'
+    meta = f'<div class="tile-meta">{" · ".join(meta_parts)}</div>' if meta_parts else ""
     return (
-        '<li class="bookmark">'
-        f'<a href="{escape(bookmark.href)}" target="_blank" rel="noreferrer noopener">{escape(bookmark.title)}</a>'
+        f'<a class="tile bookmark-tile" href="{escape(bookmark.href)}" target="_blank" rel="noreferrer noopener">'
+        f'<div class="tile-title">{escape(bookmark.title)}</div>'
         f"{desc}{meta}"
-        "</li>"
+        "</a>"
     )
 
 
-def _render_subfolder_link(folder: Folder) -> str:
+def _render_subfolder_tile(folder: Folder) -> str:
     assert folder.slug, "Slug must be assigned before rendering"
     return (
-        '<li class="folder-link">'
-        f'<a href="{escape(folder.slug)}">{escape(folder.title)}</a>'
-        "</li>"
+        f'<a class="tile folder-tile" href="{escape(folder.slug)}">'
+        f'<div class="tile-title">{escape(folder.title)}</div>'
+        '<div class="tile-meta">Ordner öffnen</div>'
+        "</a>"
     )
 
 
 def render_page(folder: Folder, page_title: str, parent_link: str | None) -> str:
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    themes = [
+        ("bookmarks-misty.css", "Misty Forrest"),
+        ("bookmarks-aurora.css", "Aurora"),
+        ("bookmarks-beach.css", "Beach Sunset"),
+        ("bookmarks-amvf.css", "AMVF"),
+        ("bookmarks-apocalypse.css", "Apocalypse"),
+        ("bookmarks-beach-beauty.css", "Beach Beauty"),
+        ("bookmarks-beach-beauty-old.css", "Beach Beauty (old)"),
+        ("bookmarks-beauty.css", "Beauty"),
+        ("bookmarks-blue-beach.css", "Blue Beach"),
+        ("bookmarks-bluechick.css", "Bluechick"),
+        ("bookmarks-bluechick2.css", "Bluechick 2"),
+        ("bookmarks-climber.css", "Climber"),
+        ("bookmarks-cosmic-traveler.css", "Cosmic Traveler"),
+        ("bookmarks-dark-cat.css", "Dark Cat"),
+        ("bookmarks-fat-cat.css", "Fat Cat"),
+        ("bookmarks-galactic-joshua.css", "Galactic Joshua"),
+        ("bookmarks-golden-gate.css", "Golden Gate"),
+        ("bookmarks-healer.css", "Healer"),
+        ("bookmarks-it-chick.css", "IT-Chick"),
+        ("bookmarks-it-guy.css", "IT-Guy"),
+        ("bookmarks-la-sera-sper-il-lag.css", "La Sera sper il Lag"),
+        ("bookmarks-last-hope.css", "Last Hope"),
+        ("bookmarks-meditating-woman.css", "Meditating Woman"),
+        ("bookmarks-meditation.css", "Meditation"),
+        ("bookmarks-red-fox.css", "Red Fox"),
+        ("bookmarks-red-fox-old.css", "Red Fox (old)"),
+        ("bookmarks-the-fly.css", "The Fly"),
+        ("bookmarks-windy-beach.css", "Windy Beach"),
+    ]
+    themes_js = json.dumps(themes)
+    theme_options = "".join(
+        f'<option value="{escape(filename)}"{" selected" if i == 0 else ""}>{escape(label)}</option>'
+        for i, (filename, label) in enumerate(themes)
+    )
+    theme_switch = (
+        '<div class="theme-switch">'
+        '<label for="theme-select">Style:</label>'
+        f'<select id="theme-select" aria-label="Darstellung wählen">{theme_options}</select>'
+        "</div>"
+    )
 
     bookmark_items = "".join(
-        _render_bookmark(child) for child in folder.children if isinstance(child, Bookmark)
+        _render_bookmark_tile(child) for child in folder.children if isinstance(child, Bookmark)
     )
     subfolder_items = "".join(
-        _render_subfolder_link(child) for child in folder.children if isinstance(child, Folder)
+        _render_subfolder_tile(child) for child in folder.children if isinstance(child, Folder)
     )
 
     bookmarks_section = (
-        f"<ul class=\"bookmarks\">{bookmark_items}</ul>" if bookmark_items else "<p class=\"muted\">Keine Bookmarks.</p>"
+        f"<div class=\"tile-grid\">{bookmark_items}</div>"
+        if bookmark_items
+        else "<p class=\"muted\">Keine Bookmarks.</p>"
     )
     subfolders_section = (
-        f"<ul class=\"subfolders\">{subfolder_items}</ul>" if subfolder_items else "<p class=\"muted\">Keine Unterordner.</p>"
+        f"<div class=\"tile-grid\">{subfolder_items}</div>"
+        if subfolder_items
+        else "<p class=\"muted\">Keine Unterordner.</p>"
     )
 
     parent_nav = (
@@ -141,134 +186,8 @@ def render_page(folder: Folder, page_title: str, parent_link: str | None) -> str
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{escape(folder.title)} – {escape(page_title)}</title>
-  <style>
-    :root {{
-      --bg: #0b1b2b;
-      --panel: #11263a;
-      --accent: #f8c102;
-      --text: #e8eef4;
-      --muted: #94a4b5;
-      --link: #7dd1ff;
-    }}
-    * {{ box-sizing: border-box; }}
-    body {{
-      margin: 0;
-      font-family: "Inter", "Segoe UI", sans-serif;
-      background: radial-gradient(120% 120% at 10% 20%, rgba(255,255,255,0.08), transparent),
-                  radial-gradient(80% 80% at 90% 10%, rgba(255,255,255,0.06), transparent),
-                  var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      padding: 24px;
-    }}
-    header {{
-      max-width: 960px;
-      margin: 0 auto 18px auto;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }}
-    .badge {{
-      background: var(--accent);
-      color: #1b1b1b;
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }}
-    h1 {{
-      margin: 0;
-      font-size: 28px;
-      letter-spacing: -0.02em;
-    }}
-    .updated {{
-      color: var(--muted);
-      font-size: 14px;
-    }}
-    .parent {{
-      color: var(--link);
-      text-decoration: none;
-      font-size: 14px;
-    }}
-    .parent:hover {{
-      color: var(--accent);
-    }}
-    main {{
-      max-width: 960px;
-      margin: 0 auto;
-      background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 16px;
-      padding: 20px;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
-    }}
-    section {{
-      margin-bottom: 20px;
-    }}
-    section h2 {{
-      margin: 0 0 8px 0;
-      font-size: 15px;
-      letter-spacing: 0.03em;
-      color: var(--accent);
-      text-transform: uppercase;
-    }}
-    ul {{
-      list-style: none;
-      padding-left: 16px;
-      margin: 0;
-    }}
-    .subfolders {{
-      border-left: 2px solid rgba(255,255,255,0.07);
-      padding-left: 12px;
-    }}
-    .folder-link {{
-      margin: 6px 0;
-      font-weight: 600;
-    }}
-    .folder-link a {{
-      color: var(--link);
-      text-decoration: none;
-    }}
-    .folder-link a:hover {{
-      color: var(--accent);
-    }}
-    .bookmark {{
-      margin: 8px 0;
-    }}
-    .bookmark a {{
-      color: var(--link);
-      text-decoration: none;
-      font-weight: 600;
-    }}
-    .bookmark a:hover {{
-      color: var(--accent);
-    }}
-    .desc {{
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 2px;
-    }}
-    .meta {{
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 2px;
-    }}
-    .muted {{
-      color: var(--muted);
-    }}
-    @media (max-width: 640px) {{
-      body {{
-        padding: 14px;
-      }}
-      h1 {{
-        font-size: 22px;
-      }}
-      main {{
-        padding: 14px;
-      }}
-    }}
-  </style>
+  <link rel="stylesheet" href="../style/css/bookmarks-base.css">
+  <link id="themeStylesheet" rel="stylesheet" href="../style/css/bookmarks-misty.css">
 </head>
 <body>
   <header>
@@ -277,7 +196,10 @@ def render_page(folder: Folder, page_title: str, parent_link: str | None) -> str
       <h1>{escape(folder.title)}</h1>
       <div class="updated">Updated {escape(now)}</div>
     </div>
-    {parent_nav}
+    <div class="header-actions">
+      {theme_switch}
+      {parent_nav}
+    </div>
   </header>
   <main>
     <section>
@@ -289,6 +211,24 @@ def render_page(folder: Folder, page_title: str, parent_link: str | None) -> str
       {subfolders_section}
     </section>
   </main>
+  <script>
+    (() => {{
+      const themes = {themes_js};
+      const select = document.getElementById("theme-select");
+      const link = document.getElementById("themeStylesheet");
+      const basePath = "../style/css/";
+      const stored = localStorage.getItem("bookmarkTheme");
+      const validValues = themes.map(([file]) => file);
+      const initial = validValues.includes(stored) ? stored : select.value;
+      link.href = basePath + initial;
+      select.value = initial;
+      select.addEventListener("change", () => {{
+        const value = select.value;
+        link.href = basePath + value;
+        localStorage.setItem("bookmarkTheme", value);
+      }});
+    }})();
+  </script>
 </body>
 </html>
 """

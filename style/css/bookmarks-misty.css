@@ -1,0 +1,15 @@
+:root {
+  --bg: #1a2420;
+  --panel: rgba(26, 36, 32, 0.78);
+  --panel-strong: rgba(26, 36, 32, 0.92);
+  --accent: #a8c5b6;
+  --text: #e8f0e8;
+  --muted: #8ba697;
+  --link: #d5e6dd;
+  --shadow: 0 8px 18px rgba(0, 0, 0, 0.32);
+  --blur: 10px;
+  --tile-height: 120px;
+  --bg-image-url: url("../img/mountainforrest1.jpg");
+  --overlay-1: rgba(26, 36, 32, 0.55);
+  --overlay-2: rgba(26, 36, 32, 0.72);
+}

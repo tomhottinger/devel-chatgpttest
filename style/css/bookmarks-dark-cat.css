@@ -1,0 +1,15 @@
+:root {
+  --bg: #0e0e0e;
+  --text: #c0c0c0;
+  --accent: #c0c0c0;
+  --link: #c0c0c0;
+  --muted: color-mix(in srgb, var(--text) 70%, #8a8a8a 30%);
+  --panel: color-mix(in srgb, var(--bg) 80%, #000 20%);
+  --panel-strong: color-mix(in srgb, var(--bg) 90%, #000 10%);
+  --shadow: 0 8px 18px rgba(0, 0, 0, 0.32);
+  --blur: 10px;
+  --tile-height: 120px;
+  --bg-image-url: url("../img/darkcat.jpg");
+  --overlay-1: color-mix(in srgb, var(--bg) 55%, transparent);
+  --overlay-2: color-mix(in srgb, var(--bg) 75%, transparent);
+}
