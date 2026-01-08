@@ -1,0 +1,92 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0a1a2f; /* Dark navy blue to match the evening beach atmosphere */
+    color: #d9e8f6; /* Soft, light blue for readability */
+    background-image: url('../img/BlueBeach.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: top;
+}
+
+/* Header and Title Styling */
+h1 {
+    margin: 0;
+    padding: 5px;
+    color: #6fa4d6; /* Light, ocean-inspired blue */
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(10, 26, 47, 0.7); /* Dark blue overlay for a subtle contrast */
+    padding: 5px;
+    border-radius: 8px;
+}
+
+/* CSS Selector styling */
+.css-selector {
+    margin-right: 10px;
+}
+
+/* Column and Row Layout */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.column {
+    flex: 33.33%;
+    padding: 10px;
+}
+@media screen and (max-width: 768px) {
+    .column {
+        flex: 100%;
+    }
+}
+
+/* Folder and Bookmark Styling */
+.folder, .bookmark {
+    background-color: rgba(14, 28, 56, 0.8); /* Deep, cool blue for an underwater-like depth */
+    padding: 5px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+.bookmark a {
+    text-decoration: none;
+    color: #6fa4d6; /* Light blue for links, to stand out against dark background */
+    font-weight: bold;
+}
+.bookmark a:hover {
+    text-decoration: underline;
+}
+.bookmark-desc {
+    font-size: 0.9em;
+    color: #d9e8f6; /* Soft, light blue for description text */
+}
+
+/* Collapsible Button Styling */
+.collapsible, .collapsible-file, .collapsible-button {
+    background-color: #193a5b; /* Dark ocean blue for an immersive, cool tone */
+    color: #ffffff;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    border-radius: 8px;
+}
+.active, .collapsible:hover, .collapsible-file:hover {
+    background-color: #2a506e; /* Lighter blue for hover effect */
+}
+
+/* Collapsible Content Styling */
+.collapsible-content, .content, .content-file {
+    display: none;
+    padding: 10px;
+    overflow: hidden;
+    background-color: rgba(14, 28, 56, 0.7); /* Dark, transparent blue for contrast */
+    margin-top: 5px;
+    border-radius: 8px;
+}

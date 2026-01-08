@@ -1,0 +1,92 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #cde1d3; /* Soft mint green to reflect the sky's color */
+    color: #5a4b3b; /* Warm brown for readability */
+    background-image: url('../img/FatCat.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: top;
+}
+
+/* Header and Title Styling */
+h1 {
+    margin: 0;
+    padding: 5px;
+    color: #d2a86a; /* Warm orange to match the cat's fur */
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(205, 225, 211, 0.7); /* Light, semi-transparent green overlay */
+    padding: 5px;
+    border-radius: 8px;
+}
+
+/* CSS Selector styling */
+.css-selector {
+    margin-right: 10px;
+}
+
+/* Column and Row Layout */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.column {
+    flex: 33.33%;
+    padding: 10px;
+}
+@media screen and (max-width: 768px) {
+    .column {
+        flex: 100%;
+    }
+}
+
+/* Folder and Bookmark Styling */
+.folder, .bookmark {
+    background-color: rgba(210, 168, 106, 0.8); /* Warm, muted orange with transparency */
+    padding: 5px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+.bookmark a {
+    text-decoration: none;
+    color: #f8c491; /* Soft peach for links */
+    font-weight: bold;
+}
+.bookmark a:hover {
+    text-decoration: underline;
+}
+.bookmark-desc {
+    font-size: 0.9em;
+    color: #5a4b3b; /* Warm brown for description text */
+}
+
+/* Collapsible Button Styling */
+.collapsible, .collapsible-file, .collapsible-button {
+    background-color: #a97241; /* Earthy orange to match the cat's fur color */
+    color: #ffffff;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    border-radius: 8px;
+}
+.active, .collapsible:hover, .collapsible-file:hover {
+    background-color: #c0834e; /* Slightly lighter orange for hover effect */
+}
+
+/* Collapsible Content Styling */
+.collapsible-content, .content, .content-file {
+    display: none;
+    padding: 10px;
+    overflow: hidden;
+    background-color: rgba(210, 168, 106, 0.7); /* Transparent warm orange */
+    margin-top: 5px;
+    border-radius: 8px;
+}
