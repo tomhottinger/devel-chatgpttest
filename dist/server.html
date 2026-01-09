@@ -15,17 +15,53 @@
     <div class="badge">Bookmarks</div>
     <div>
       <h1><a href="../index.php?return=server.html" class="reload-link" title="Bookmarks neu laden">Server</a></h1>
-      <div class="updated">Updated 2026-01-09 13:38 UTC</div>
+      <div class="updated">Updated 2026-01-09 14:15 UTC</div>
     </div>
     <div class="header-actions">
-      <div class="theme-switch"><label for="theme-select">Style:</label><select id="theme-select" aria-label="Darstellung wählen"><option value="bookmarks-misty.css" selected>Misty</option></select></div>
       <a class="parent" href="vcenter.html">↩ Zurück</a>
+      <button id="burger-menu-btn" class="burger-btn" aria-label="Menü öffnen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
+
+  <div id="burger-menu" class="burger-menu">
+    <div class="burger-menu-content">
+      <button id="burger-close" class="burger-close" aria-label="Menü schliessen">&times;</button>
+
+      <div class="menu-section">
+        <h3>Darstellung</h3>
+        <div class="theme-switch-menu"><label for="theme-select">Style:</label><select id="theme-select" aria-label="Darstellung wählen"><option value="bookmarks-misty.css" selected>Misty</option></select></div>
+      </div>
+
+      <div class="menu-section">
+        <h3>Aktionen</h3>
+        <button id="reload-btn" class="menu-button">
+          <span>🔄</span> Bookmarks neu laden
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>Reihenfolge</h3>
+        <button id="reset-order-btn" class="menu-button">
+          <span>↺</span> Reihenfolge zurücksetzen
+        </button>
+        <button id="export-order-btn" class="menu-button">
+          <span>⬇</span> Reihenfolge exportieren
+        </button>
+        <button id="import-order-btn" class="menu-button">
+          <span>⬆</span> Reihenfolge importieren
+        </button>
+        <input type="file" id="import-order-input" accept=".json" style="display: none;">
+      </div>
+    </div>
+  </div>
   <main>
     <section>
       <h2>Bookmarks</h2>
-      <div class="tile-grid"><a class="tile bookmark-tile" href="https://gictvcs02.gict.ch/" target="_blank" rel="noreferrer noopener"><div class="tile-title">VMware Server Farm</div></a><a class="tile bookmark-tile" href="https://gictvcs02.gict.ch/ui/app/datacenter;nav=h/urn:vmomi:Datacenter:datacenter-3:41b05684-8745-4c1b-a9b0-a02d118767a3/summary" target="_blank" rel="noreferrer noopener"><div class="tile-title">vSphere - Serverfarm</div></a><a class="tile bookmark-tile" href="https://gictvcs04.gict.ch/" target="_blank" rel="noreferrer noopener"><div class="tile-title">vSphere - Alte CLientfarm</div></a></div>
+      <div class="tile-grid"><a class="tile bookmark-tile" href="https://gictvcs02.gict.ch/" target="_blank" rel="noreferrer noopener" draggable="true" data-id="273"><div class="tile-title">VMware Server Farm</div></a><a class="tile bookmark-tile" href="https://gictvcs02.gict.ch/ui/app/datacenter;nav=h/urn:vmomi:Datacenter:datacenter-3:41b05684-8745-4c1b-a9b0-a02d118767a3/summary" target="_blank" rel="noreferrer noopener" draggable="true" data-id="276"><div class="tile-title">vSphere - Serverfarm</div></a><a class="tile bookmark-tile" href="https://gictvcs04.gict.ch/" target="_blank" rel="noreferrer noopener" draggable="true" data-id="275"><div class="tile-title">vSphere - Alte CLientfarm</div></a></div>
     </section>
     <section>
       <h2>Ordner</h2>
@@ -34,6 +70,37 @@
   </main>
   <script>
     (() => {
+      // Burger menu
+      const burgerBtn = document.getElementById("burger-menu-btn");
+      const burgerMenu = document.getElementById("burger-menu");
+      const burgerClose = document.getElementById("burger-close");
+
+      function openMenu() {
+        burgerMenu.classList.add("open");
+      }
+
+      function closeMenu() {
+        burgerMenu.classList.remove("open");
+      }
+
+      burgerBtn.addEventListener("click", openMenu);
+      burgerClose.addEventListener("click", closeMenu);
+
+      // Close menu when clicking outside
+      burgerMenu.addEventListener("click", (e) => {
+        if (e.target === burgerMenu) {
+          closeMenu();
+        }
+      });
+
+      // Close menu on Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && burgerMenu.classList.contains("open")) {
+          closeMenu();
+        }
+      });
+
+      // Theme switcher
       const themes = [["bookmarks-misty.css","Misty"]];
       const select = document.getElementById("theme-select");
       const link = document.getElementById("themeStylesheet");
@@ -47,6 +114,161 @@
         const value = select.value;
         link.href = basePath + value;
         localStorage.setItem("bookmarkTheme", value);
+      });
+
+      // Drag & drop reordering
+      const currentPage = "server.html";
+      const orderKey = "tileOrder_" + currentPage;
+
+      // Apply saved order
+      function applyOrder() {
+        const savedOrder = localStorage.getItem(orderKey);
+        if (!savedOrder) return;
+
+        const order = JSON.parse(savedOrder);
+        const grids = document.querySelectorAll(".tile-grid");
+
+        grids.forEach(grid => {
+          const tiles = Array.from(grid.querySelectorAll(".tile[data-id]"));
+          const tileMap = new Map(tiles.map(t => [t.dataset.id, t]));
+
+          // Reorder tiles based on saved order
+          order.forEach(id => {
+            const tile = tileMap.get(id);
+            if (tile && tile.parentNode === grid) {
+              grid.appendChild(tile);
+            }
+          });
+        });
+      }
+
+      // Save current order
+      function saveOrder() {
+        const grids = document.querySelectorAll(".tile-grid");
+        const order = [];
+
+        grids.forEach(grid => {
+          const tiles = grid.querySelectorAll(".tile[data-id]");
+          tiles.forEach(tile => {
+            if (tile.dataset.id) {
+              order.push(tile.dataset.id);
+            }
+          });
+        });
+
+        localStorage.setItem(orderKey, JSON.stringify(order));
+      }
+
+      // Drag & drop handlers
+      let draggedElement = null;
+
+      document.addEventListener("dragstart", (e) => {
+        if (e.target.classList.contains("tile") && e.target.dataset.id) {
+          draggedElement = e.target;
+          e.target.style.opacity = "0.5";
+        }
+      });
+
+      document.addEventListener("dragend", (e) => {
+        if (e.target.classList.contains("tile")) {
+          e.target.style.opacity = "";
+          draggedElement = null;
+        }
+      });
+
+      document.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        const target = e.target.closest(".tile");
+        if (target && target.dataset.id && draggedElement && target !== draggedElement) {
+          const grid = target.parentNode;
+          if (grid.classList.contains("tile-grid") && draggedElement.parentNode === grid) {
+            const rect = target.getBoundingClientRect();
+            const midpoint = rect.left + rect.width / 2;
+
+            if (e.clientX < midpoint) {
+              grid.insertBefore(draggedElement, target);
+            } else {
+              grid.insertBefore(draggedElement, target.nextSibling);
+            }
+          }
+        }
+      });
+
+      document.addEventListener("drop", (e) => {
+        e.preventDefault();
+        saveOrder();
+      });
+
+      // Apply saved order on load
+      applyOrder();
+
+      // Reload button
+      document.getElementById("reload-btn").addEventListener("click", () => {
+        window.location.href = "../index.php?return=server.html";
+      });
+
+      // Reset order button
+      document.getElementById("reset-order-btn").addEventListener("click", () => {
+        if (confirm("Möchten Sie die Reihenfolge wirklich zurücksetzen?")) {
+          localStorage.removeItem(orderKey);
+          location.reload();
+        }
+      });
+
+      // Export order button
+      document.getElementById("export-order-btn").addEventListener("click", () => {
+        const savedOrder = localStorage.getItem(orderKey);
+        if (!savedOrder) {
+          alert("Keine gespeicherte Reihenfolge vorhanden.");
+          return;
+        }
+
+        const data = {
+          page: currentPage,
+          order: JSON.parse(savedOrder),
+          exported: new Date().toISOString()
+        };
+
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "tile-order-" + currentPage.replace(".html", "") + ".json";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+
+      // Import order button
+      document.getElementById("import-order-btn").addEventListener("click", () => {
+        document.getElementById("import-order-input").click();
+      });
+
+      document.getElementById("import-order-input").addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          try {
+            const data = JSON.parse(event.target.result);
+
+            if (!data.order || !Array.isArray(data.order)) {
+              alert("Ungültiges Dateiformat.");
+              return;
+            }
+
+            localStorage.setItem(orderKey, JSON.stringify(data.order));
+            location.reload();
+          } catch (err) {
+            alert("Fehler beim Laden der Datei: " + err.message);
+          }
+        };
+        reader.readAsText(file);
+
+        // Reset input so same file can be selected again
+        e.target.value = "";
       });
     })();
   </script>

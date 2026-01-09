@@ -11,13 +11,15 @@ class Bookmark {
     public ?string $desc;
     public ?string $added;
     public ?string $modified;
+    public ?string $id;
 
-    public function __construct(string $title, string $href, ?string $desc = null, ?string $added = null, ?string $modified = null) {
+    public function __construct(string $title, string $href, ?string $desc = null, ?string $added = null, ?string $modified = null, ?string $id = null) {
         $this->title = $title;
         $this->href = $href;
         $this->desc = $desc;
         $this->added = $added;
         $this->modified = $modified;
+        $this->id = $id;
     }
 }
 
@@ -25,10 +27,12 @@ class Folder {
     public string $title;
     public array $children; // array of Folder|Bookmark
     public ?string $slug = null;
+    public ?string $id;
 
-    public function __construct(string $title, array $children = []) {
+    public function __construct(string $title, array $children = [], ?string $id = null) {
         $this->title = $title;
         $this->children = $children;
+        $this->id = $id;
     }
 }
 
@@ -36,6 +40,7 @@ class Folder {
 
 function parseFolder(SimpleXMLElement $elem, string $fallbackTitle): Folder {
     $title = (string)$elem->title ?: $fallbackTitle;
+    $folderId = (string)$elem['id'] ?: null;
     $children = [];
 
     foreach ($elem->children() as $child) {
@@ -53,12 +58,13 @@ function parseFolder(SimpleXMLElement $elem, string $fallbackTitle): Folder {
             $desc = (string)$child->desc ?: null;
             $added = (string)$child['added'] ?: null;
             $modified = (string)$child['modified'] ?: null;
+            $bookmarkId = (string)$child['id'] ?: null;
 
-            $children[] = new Bookmark($bookmarkTitle, $href, $desc, $added, $modified);
+            $children[] = new Bookmark($bookmarkTitle, $href, $desc, $added, $modified, $bookmarkId);
         }
     }
 
-    return new Folder($title, $children);
+    return new Folder($title, $children, $folderId);
 }
 
 function parseXbelFile(string $path): Folder {
@@ -130,14 +136,18 @@ function renderBookmarkTile(Bookmark $bookmark): string {
     }
     $meta = $metaParts ? '<div class="tile-meta">' . implode(' · ', $metaParts) . '</div>' : '';
 
-    return '<a class="tile bookmark-tile" href="' . htmlspecialchars($bookmark->href, ENT_QUOTES, 'UTF-8') . '" target="_blank" rel="noreferrer noopener">'
+    $idAttr = $bookmark->id ? ' data-id="' . htmlspecialchars($bookmark->id, ENT_QUOTES, 'UTF-8') . '"' : '';
+
+    return '<a class="tile bookmark-tile" href="' . htmlspecialchars($bookmark->href, ENT_QUOTES, 'UTF-8') . '" target="_blank" rel="noreferrer noopener" draggable="true"' . $idAttr . '>'
         . '<div class="tile-title">' . htmlspecialchars($bookmark->title, ENT_QUOTES, 'UTF-8') . '</div>'
         . $desc . $meta
         . '</a>';
 }
 
 function renderSubfolderTile(Folder $folder): string {
-    return '<a class="tile folder-tile" href="' . htmlspecialchars($folder->slug, ENT_QUOTES, 'UTF-8') . '">'
+    $idAttr = $folder->id ? ' data-id="' . htmlspecialchars($folder->id, ENT_QUOTES, 'UTF-8') . '"' : '';
+
+    return '<a class="tile folder-tile" href="' . htmlspecialchars($folder->slug, ENT_QUOTES, 'UTF-8') . '" draggable="true"' . $idAttr . '>'
         . '<div class="tile-title">' . htmlspecialchars($folder->title, ENT_QUOTES, 'UTF-8') . '</div>'
         . '<div class="tile-meta">Ordner öffnen</div>'
         . '</a>';
@@ -160,7 +170,7 @@ function renderPage(Folder $folder, string $pageTitle, ?string $parentLink, arra
             . htmlspecialchars($label, ENT_QUOTES, 'UTF-8') . '</option>';
     }
 
-    $themeSwitch = '<div class="theme-switch">'
+    $themeSwitch = '<div class="theme-switch-menu">'
         . '<label for="theme-select">Style:</label>'
         . '<select id="theme-select" aria-label="Darstellung wählen">' . $themeOptions . '</select>'
         . '</div>';
@@ -215,10 +225,46 @@ function renderPage(Folder $folder, string $pageTitle, ?string $parentLink, arra
       <div class="updated">Updated {$now}</div>
     </div>
     <div class="header-actions">
-      {$themeSwitch}
       {$parentNav}
+      <button id="burger-menu-btn" class="burger-btn" aria-label="Menü öffnen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
+
+  <div id="burger-menu" class="burger-menu">
+    <div class="burger-menu-content">
+      <button id="burger-close" class="burger-close" aria-label="Menü schliessen">&times;</button>
+
+      <div class="menu-section">
+        <h3>Darstellung</h3>
+        {$themeSwitch}
+      </div>
+
+      <div class="menu-section">
+        <h3>Aktionen</h3>
+        <button id="reload-btn" class="menu-button">
+          <span>🔄</span> Bookmarks neu laden
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>Reihenfolge</h3>
+        <button id="reset-order-btn" class="menu-button">
+          <span>↺</span> Reihenfolge zurücksetzen
+        </button>
+        <button id="export-order-btn" class="menu-button">
+          <span>⬇</span> Reihenfolge exportieren
+        </button>
+        <button id="import-order-btn" class="menu-button">
+          <span>⬆</span> Reihenfolge importieren
+        </button>
+        <input type="file" id="import-order-input" accept=".json" style="display: none;">
+      </div>
+    </div>
+  </div>
   <main>
     <section>
       <h2>Bookmarks</h2>
@@ -231,6 +277,37 @@ function renderPage(Folder $folder, string $pageTitle, ?string $parentLink, arra
   </main>
   <script>
     (() => {
+      // Burger menu
+      const burgerBtn = document.getElementById("burger-menu-btn");
+      const burgerMenu = document.getElementById("burger-menu");
+      const burgerClose = document.getElementById("burger-close");
+
+      function openMenu() {
+        burgerMenu.classList.add("open");
+      }
+
+      function closeMenu() {
+        burgerMenu.classList.remove("open");
+      }
+
+      burgerBtn.addEventListener("click", openMenu);
+      burgerClose.addEventListener("click", closeMenu);
+
+      // Close menu when clicking outside
+      burgerMenu.addEventListener("click", (e) => {
+        if (e.target === burgerMenu) {
+          closeMenu();
+        }
+      });
+
+      // Close menu on Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && burgerMenu.classList.contains("open")) {
+          closeMenu();
+        }
+      });
+
+      // Theme switcher
       const themes = {$themesJs};
       const select = document.getElementById("theme-select");
       const link = document.getElementById("themeStylesheet");
@@ -244,6 +321,161 @@ function renderPage(Folder $folder, string $pageTitle, ?string $parentLink, arra
         const value = select.value;
         link.href = basePath + value;
         localStorage.setItem("bookmarkTheme", value);
+      });
+
+      // Drag & drop reordering
+      const currentPage = "{$folder->slug}";
+      const orderKey = "tileOrder_" + currentPage;
+
+      // Apply saved order
+      function applyOrder() {
+        const savedOrder = localStorage.getItem(orderKey);
+        if (!savedOrder) return;
+
+        const order = JSON.parse(savedOrder);
+        const grids = document.querySelectorAll(".tile-grid");
+
+        grids.forEach(grid => {
+          const tiles = Array.from(grid.querySelectorAll(".tile[data-id]"));
+          const tileMap = new Map(tiles.map(t => [t.dataset.id, t]));
+
+          // Reorder tiles based on saved order
+          order.forEach(id => {
+            const tile = tileMap.get(id);
+            if (tile && tile.parentNode === grid) {
+              grid.appendChild(tile);
+            }
+          });
+        });
+      }
+
+      // Save current order
+      function saveOrder() {
+        const grids = document.querySelectorAll(".tile-grid");
+        const order = [];
+
+        grids.forEach(grid => {
+          const tiles = grid.querySelectorAll(".tile[data-id]");
+          tiles.forEach(tile => {
+            if (tile.dataset.id) {
+              order.push(tile.dataset.id);
+            }
+          });
+        });
+
+        localStorage.setItem(orderKey, JSON.stringify(order));
+      }
+
+      // Drag & drop handlers
+      let draggedElement = null;
+
+      document.addEventListener("dragstart", (e) => {
+        if (e.target.classList.contains("tile") && e.target.dataset.id) {
+          draggedElement = e.target;
+          e.target.style.opacity = "0.5";
+        }
+      });
+
+      document.addEventListener("dragend", (e) => {
+        if (e.target.classList.contains("tile")) {
+          e.target.style.opacity = "";
+          draggedElement = null;
+        }
+      });
+
+      document.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        const target = e.target.closest(".tile");
+        if (target && target.dataset.id && draggedElement && target !== draggedElement) {
+          const grid = target.parentNode;
+          if (grid.classList.contains("tile-grid") && draggedElement.parentNode === grid) {
+            const rect = target.getBoundingClientRect();
+            const midpoint = rect.left + rect.width / 2;
+
+            if (e.clientX < midpoint) {
+              grid.insertBefore(draggedElement, target);
+            } else {
+              grid.insertBefore(draggedElement, target.nextSibling);
+            }
+          }
+        }
+      });
+
+      document.addEventListener("drop", (e) => {
+        e.preventDefault();
+        saveOrder();
+      });
+
+      // Apply saved order on load
+      applyOrder();
+
+      // Reload button
+      document.getElementById("reload-btn").addEventListener("click", () => {
+        window.location.href = "{$reloadUrl}";
+      });
+
+      // Reset order button
+      document.getElementById("reset-order-btn").addEventListener("click", () => {
+        if (confirm("Möchten Sie die Reihenfolge wirklich zurücksetzen?")) {
+          localStorage.removeItem(orderKey);
+          location.reload();
+        }
+      });
+
+      // Export order button
+      document.getElementById("export-order-btn").addEventListener("click", () => {
+        const savedOrder = localStorage.getItem(orderKey);
+        if (!savedOrder) {
+          alert("Keine gespeicherte Reihenfolge vorhanden.");
+          return;
+        }
+
+        const data = {
+          page: currentPage,
+          order: JSON.parse(savedOrder),
+          exported: new Date().toISOString()
+        };
+
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "tile-order-" + currentPage.replace(".html", "") + ".json";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+
+      // Import order button
+      document.getElementById("import-order-btn").addEventListener("click", () => {
+        document.getElementById("import-order-input").click();
+      });
+
+      document.getElementById("import-order-input").addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          try {
+            const data = JSON.parse(event.target.result);
+
+            if (!data.order || !Array.isArray(data.order)) {
+              alert("Ungültiges Dateiformat.");
+              return;
+            }
+
+            localStorage.setItem(orderKey, JSON.stringify(data.order));
+            location.reload();
+          } catch (err) {
+            alert("Fehler beim Laden der Datei: " + err.message);
+          }
+        };
+        reader.readAsText(file);
+
+        // Reset input so same file can be selected again
+        e.target.value = "";
       });
     })();
   </script>

@@ -3,7 +3,8 @@
     "allow": [
       "Bash(ls:*)",
       "Bash(python3:*)",
-      "Bash(bash -lc:*)"
+      "Bash(bash -lc:*)",
+      "Bash(php index.php:*)"
     ]
   }
 }

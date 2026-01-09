@@ -1,67 +1,426 @@
-[2026-01-09 13:32:53] === Request started ===
-[2026-01-09 13:32:53] Request URI: /devel/index.php?return=floccus-personal.html
-[2026-01-09 13:32:53] Return to: floccus-personal.html
-[2026-01-09 13:32:53] Sanitized return path: floccus-personal.html
-[2026-01-09 13:32:53] Executing fetch script: ./TomsBookmarks/fetchForced.sh
-[2026-01-09 13:32:53] Fetch script completed in 45.96ms with exit code: 0
-[2026-01-09 13:32:53] Fetch script output:
-[2026-01-09 13:32:53]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
-[2026-01-09 13:32:53]   > HEAD is now at a457c7f Floccus update: Floccus-Work
-[2026-01-09 13:32:53]   > /app/t71.ch/public/devel
-[2026-01-09 13:32:53] Checking if HTML regeneration is needed...
-[2026-01-09 13:32:53] Needs regeneration: NO
-[2026-01-09 13:32:53] HTML files are up-to-date, skipping regeneration
-[2026-01-09 13:32:53] Redirecting to: dist/floccus-personal.html
-[2026-01-09 13:32:53] === Request completed successfully ===
-[2026-01-09 13:36:38] === Request started ===
-[2026-01-09 13:36:38] Request URI: /devel/index.php?return=floccus-personal.html
-[2026-01-09 13:36:38] Return to: floccus-personal.html
-[2026-01-09 13:36:38] Sanitized return path: floccus-personal.html
-[2026-01-09 13:36:38] Executing fetch script: ./TomsBookmarks/fetchForced.sh
-[2026-01-09 13:36:38] Fetch script completed in 49.86ms with exit code: 0
-[2026-01-09 13:36:38] Fetch script output:
-[2026-01-09 13:36:38]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
-[2026-01-09 13:36:38]   > HEAD is now at a457c7f Floccus update: Floccus-Work
-[2026-01-09 13:36:38]   > /app/t71.ch/public/devel
-[2026-01-09 13:36:38] Checking if HTML regeneration is needed...
-[2026-01-09 13:36:38] Needs regeneration: NO
-[2026-01-09 13:36:38] HTML files are up-to-date, skipping regeneration
-[2026-01-09 13:36:38] Redirecting to: dist/floccus-personal.html
-[2026-01-09 13:36:38] === Request completed successfully ===
-[2026-01-09 13:36:42] === Request started ===
-[2026-01-09 13:36:42] Request URI: /devel/index.php?return=floccus-personal.html
-[2026-01-09 13:36:42] Return to: floccus-personal.html
-[2026-01-09 13:36:42] Sanitized return path: floccus-personal.html
-[2026-01-09 13:36:42] Executing fetch script: ./TomsBookmarks/fetchForced.sh
-[2026-01-09 13:36:42] Fetch script completed in 35.52ms with exit code: 0
-[2026-01-09 13:36:42] Fetch script output:
-[2026-01-09 13:36:42]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
-[2026-01-09 13:36:42]   > HEAD is now at a457c7f Floccus update: Floccus-Work
-[2026-01-09 13:36:42]   > /app/t71.ch/public/devel
-[2026-01-09 13:36:42] Checking if HTML regeneration is needed...
-[2026-01-09 13:36:42] Needs regeneration: NO
-[2026-01-09 13:36:42] HTML files are up-to-date, skipping regeneration
-[2026-01-09 13:36:42] Redirecting to: dist/floccus-personal.html
-[2026-01-09 13:36:42] === Request completed successfully ===
-[2026-01-09 13:38:24] === Request started ===
-[2026-01-09 13:38:24] Request URI: /devel/index.php?return=floccus-personal.html
-[2026-01-09 13:38:24] Return to: floccus-personal.html
-[2026-01-09 13:38:24] Sanitized return path: floccus-personal.html
-[2026-01-09 13:38:24] Executing fetch script: ./TomsBookmarks/fetchForced.sh
-[2026-01-09 13:38:24] Fetch script completed in 67.2ms with exit code: 0
-[2026-01-09 13:38:24] Fetch script output:
-[2026-01-09 13:38:24]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
-[2026-01-09 13:38:24]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
-[2026-01-09 13:38:24]   > /app/t71.ch/public/devel
-[2026-01-09 13:38:24] Checking if HTML regeneration is needed...
-[2026-01-09 13:38:24] Needs regeneration: YES
-[2026-01-09 13:38:24] Found 2 XBEL files
-[2026-01-09 13:38:24]   Building site from 2 XBEL file(s)
-[2026-01-09 13:38:24]   Found 1 theme(s)
-[2026-01-09 13:38:24]   Parsed: Floccus-GICT.xbel (title: Floccus-GICT)
-[2026-01-09 13:38:24]   Parsed: Floccus-Personal.xbel (title: Floccus-Personal)
-[2026-01-09 13:38:24]   Writing HTML files to: /app/t71.ch/public/devel/dist
-[2026-01-09 13:38:24]   Generated index.html and subpages
-[2026-01-09 13:38:24] HTML files regenerated in 32.91ms
-[2026-01-09 13:38:24] Redirecting to: dist/floccus-personal.html
-[2026-01-09 13:38:24] === Request completed successfully ===
+[2026-01-09 13:47:46] === Request started ===
+[2026-01-09 13:47:46] Request URI: /devel/index.php?return=index.html
+[2026-01-09 13:47:46] Return to: index.html
+[2026-01-09 13:47:46] Sanitized return path: index.html
+[2026-01-09 13:47:46] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 13:47:46] Fetch script completed in 56.69ms with exit code: 0
+[2026-01-09 13:47:46] Fetch script output:
+[2026-01-09 13:47:46]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 13:47:46]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 13:47:46]   > /app/t71.ch/public/devel
+[2026-01-09 13:47:46] Checking if HTML regeneration is needed...
+[2026-01-09 13:47:46] Needs regeneration: NO
+[2026-01-09 13:47:46] HTML files are up-to-date, skipping regeneration
+[2026-01-09 13:47:46] Redirecting to: dist/index.html
+[2026-01-09 13:47:46] === Request completed successfully ===
+[2026-01-09 13:48:17] === Request started ===
+[2026-01-09 13:48:17] Request URI: /devel/index.php?return=index.html
+[2026-01-09 13:48:17] Return to: index.html
+[2026-01-09 13:48:17] Sanitized return path: index.html
+[2026-01-09 13:48:17] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 13:48:18] Fetch script completed in 54ms with exit code: 0
+[2026-01-09 13:48:18] Fetch script output:
+[2026-01-09 13:48:18]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 13:48:18]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 13:48:18]   > /app/t71.ch/public/devel
+[2026-01-09 13:48:18] Checking if HTML regeneration is needed...
+[2026-01-09 13:48:18] Needs regeneration: YES
+[2026-01-09 13:48:18] Found 2 XBEL files
+[2026-01-09 13:48:18]   Building site from 2 XBEL file(s)
+[2026-01-09 13:48:18]   Found 1 theme(s)
+[2026-01-09 13:48:18]   Parsed: Floccus-GICT.xbel (title: Floccus-GICT)
+[2026-01-09 13:48:18]   Parsed: Floccus-Personal.xbel (title: Floccus-Personal)
+[2026-01-09 13:48:18]   Writing HTML files to: /app/t71.ch/public/devel/dist
+[2026-01-09 13:48:18]   Generated index.html and subpages
+[2026-01-09 13:48:18] HTML files regenerated in 26.51ms
+[2026-01-09 13:48:18] Redirecting to: dist/index.html
+[2026-01-09 13:48:18] === Request completed successfully ===
+[2026-01-09 13:51:06] === Request started ===
+[2026-01-09 13:51:06] Request URI: /devel/
+[2026-01-09 13:51:06] Return to: index.html
+[2026-01-09 13:51:06] Sanitized return path: index.html
+[2026-01-09 13:51:06] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 13:51:06] Fetch script completed in 43.85ms with exit code: 0
+[2026-01-09 13:51:06] Fetch script output:
+[2026-01-09 13:51:06]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 13:51:06]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 13:51:06]   > /app/t71.ch/public/devel
+[2026-01-09 13:51:06] Checking if HTML regeneration is needed...
+[2026-01-09 13:51:06] Needs regeneration: NO
+[2026-01-09 13:51:06] HTML files are up-to-date, skipping regeneration
+[2026-01-09 13:51:06] Redirecting to: dist/index.html
+[2026-01-09 13:51:06] === Request completed successfully ===
+[2026-01-09 13:58:25] === Request started ===
+[2026-01-09 13:58:25] Request URI: /devel/index.php?return=floccus-gict.html
+[2026-01-09 13:58:25] Return to: floccus-gict.html
+[2026-01-09 13:58:25] Sanitized return path: floccus-gict.html
+[2026-01-09 13:58:25] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 13:58:25] Fetch script completed in 38.35ms with exit code: 0
+[2026-01-09 13:58:25] Fetch script output:
+[2026-01-09 13:58:25]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 13:58:25]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 13:58:25]   > /app/t71.ch/public/devel
+[2026-01-09 13:58:25] Checking if HTML regeneration is needed...
+[2026-01-09 13:58:25] Needs regeneration: NO
+[2026-01-09 13:58:25] HTML files are up-to-date, skipping regeneration
+[2026-01-09 13:58:25] Redirecting to: dist/floccus-gict.html
+[2026-01-09 13:58:25] === Request completed successfully ===
+[2026-01-09 13:58:27] === Request started ===
+[2026-01-09 13:58:27] Request URI: /devel/index.php?return=floccus-gict.html
+[2026-01-09 13:58:27] Return to: floccus-gict.html
+[2026-01-09 13:58:27] Sanitized return path: floccus-gict.html
+[2026-01-09 13:58:27] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 13:58:27] Fetch script completed in 48.15ms with exit code: 0
+[2026-01-09 13:58:27] Fetch script output:
+[2026-01-09 13:58:27]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 13:58:27]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 13:58:27]   > /app/t71.ch/public/devel
+[2026-01-09 13:58:27] Checking if HTML regeneration is needed...
+[2026-01-09 13:58:27] Needs regeneration: NO
+[2026-01-09 13:58:27] HTML files are up-to-date, skipping regeneration
+[2026-01-09 13:58:27] Redirecting to: dist/floccus-gict.html
+[2026-01-09 13:58:27] === Request completed successfully ===
+[2026-01-09 13:58:27] === Request started ===
+[2026-01-09 13:58:27] Request URI: /devel/index.php?return=floccus-gict.html
+[2026-01-09 13:58:27] Return to: floccus-gict.html
+[2026-01-09 13:58:27] Sanitized return path: floccus-gict.html
+[2026-01-09 13:58:27] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 13:58:27] Fetch script completed in 29ms with exit code: 0
+[2026-01-09 13:58:27] Fetch script output:
+[2026-01-09 13:58:27]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 13:58:27]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 13:58:27]   > /app/t71.ch/public/devel
+[2026-01-09 13:58:27] Checking if HTML regeneration is needed...
+[2026-01-09 13:58:27] Needs regeneration: NO
+[2026-01-09 13:58:27] HTML files are up-to-date, skipping regeneration
+[2026-01-09 13:58:27] Redirecting to: dist/floccus-gict.html
+[2026-01-09 13:58:27] === Request completed successfully ===
+[2026-01-09 13:58:33] === Request started ===
+[2026-01-09 13:58:33] Request URI: /devel/
+[2026-01-09 13:58:33] Return to: index.html
+[2026-01-09 13:58:33] Sanitized return path: index.html
+[2026-01-09 13:58:33] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 13:58:33] Fetch script completed in 48.11ms with exit code: 0
+[2026-01-09 13:58:33] Fetch script output:
+[2026-01-09 13:58:33]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 13:58:33]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 13:58:33]   > /app/t71.ch/public/devel
+[2026-01-09 13:58:33] Checking if HTML regeneration is needed...
+[2026-01-09 13:58:33] Needs regeneration: NO
+[2026-01-09 13:58:33] HTML files are up-to-date, skipping regeneration
+[2026-01-09 13:58:33] Redirecting to: dist/index.html
+[2026-01-09 13:58:33] === Request completed successfully ===
+[2026-01-09 13:58:36] === Request started ===
+[2026-01-09 13:58:36] Request URI: /devel/index.php
+[2026-01-09 13:58:36] Return to: index.html
+[2026-01-09 13:58:36] Sanitized return path: index.html
+[2026-01-09 13:58:36] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 13:58:36] Fetch script completed in 44.79ms with exit code: 0
+[2026-01-09 13:58:36] Fetch script output:
+[2026-01-09 13:58:36]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 13:58:36]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 13:58:36]   > /app/t71.ch/public/devel
+[2026-01-09 13:58:36] Checking if HTML regeneration is needed...
+[2026-01-09 13:58:36] Needs regeneration: NO
+[2026-01-09 13:58:36] HTML files are up-to-date, skipping regeneration
+[2026-01-09 13:58:36] Redirecting to: dist/index.html
+[2026-01-09 13:58:36] === Request completed successfully ===
+[2026-01-09 13:59:04] === Request started ===
+[2026-01-09 13:59:04] Request URI: /devel/index.php?return=index.html
+[2026-01-09 13:59:04] Return to: index.html
+[2026-01-09 13:59:04] Sanitized return path: index.html
+[2026-01-09 13:59:04] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 13:59:04] Fetch script completed in 63.67ms with exit code: 0
+[2026-01-09 13:59:04] Fetch script output:
+[2026-01-09 13:59:04]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 13:59:04]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 13:59:04]   > /app/t71.ch/public/devel
+[2026-01-09 13:59:04] Checking if HTML regeneration is needed...
+[2026-01-09 13:59:04] Needs regeneration: YES
+[2026-01-09 13:59:04] Found 2 XBEL files
+[2026-01-09 13:59:04]   Building site from 2 XBEL file(s)
+[2026-01-09 13:59:04]   Found 1 theme(s)
+[2026-01-09 13:59:04]   Parsed: Floccus-GICT.xbel (title: Floccus-GICT)
+[2026-01-09 13:59:04]   Parsed: Floccus-Personal.xbel (title: Floccus-Personal)
+[2026-01-09 13:59:04]   Writing HTML files to: /app/t71.ch/public/devel/dist
+[2026-01-09 13:59:04]   Generated index.html and subpages
+[2026-01-09 13:59:04] HTML files regenerated in 34.9ms
+[2026-01-09 13:59:04] Redirecting to: dist/index.html
+[2026-01-09 13:59:04] === Request completed successfully ===
+[2026-01-09 13:59:06] === Request started ===
+[2026-01-09 13:59:06] Request URI: /devel/index.php?return=index.html
+[2026-01-09 13:59:06] Return to: index.html
+[2026-01-09 13:59:06] Sanitized return path: index.html
+[2026-01-09 13:59:06] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 13:59:06] Fetch script completed in 35.35ms with exit code: 0
+[2026-01-09 13:59:06] Fetch script output:
+[2026-01-09 13:59:06]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 13:59:06]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 13:59:06]   > /app/t71.ch/public/devel
+[2026-01-09 13:59:06] Checking if HTML regeneration is needed...
+[2026-01-09 13:59:06] Needs regeneration: NO
+[2026-01-09 13:59:06] HTML files are up-to-date, skipping regeneration
+[2026-01-09 13:59:06] Redirecting to: dist/index.html
+[2026-01-09 13:59:06] === Request completed successfully ===
+[2026-01-09 13:59:07] === Request started ===
+[2026-01-09 13:59:07] Request URI: /devel/index.php?return=index.html
+[2026-01-09 13:59:07] Return to: index.html
+[2026-01-09 13:59:07] Sanitized return path: index.html
+[2026-01-09 13:59:07] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 13:59:07] Fetch script completed in 46.42ms with exit code: 0
+[2026-01-09 13:59:07] Fetch script output:
+[2026-01-09 13:59:07]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 13:59:07]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 13:59:07]   > /app/t71.ch/public/devel
+[2026-01-09 13:59:07] Checking if HTML regeneration is needed...
+[2026-01-09 13:59:07] Needs regeneration: NO
+[2026-01-09 13:59:07] HTML files are up-to-date, skipping regeneration
+[2026-01-09 13:59:07] Redirecting to: dist/index.html
+[2026-01-09 13:59:07] === Request completed successfully ===
+[2026-01-09 13:59:29] === Request started ===
+[2026-01-09 13:59:29] Request URI: /devel/index.php?return=index.html
+[2026-01-09 13:59:29] Return to: index.html
+[2026-01-09 13:59:29] Sanitized return path: index.html
+[2026-01-09 13:59:29] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 13:59:29] Fetch script completed in 50.97ms with exit code: 0
+[2026-01-09 13:59:29] Fetch script output:
+[2026-01-09 13:59:29]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 13:59:29]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 13:59:29]   > /app/t71.ch/public/devel
+[2026-01-09 13:59:29] Checking if HTML regeneration is needed...
+[2026-01-09 13:59:29] Needs regeneration: NO
+[2026-01-09 13:59:29] HTML files are up-to-date, skipping regeneration
+[2026-01-09 13:59:29] Redirecting to: dist/index.html
+[2026-01-09 13:59:29] === Request completed successfully ===
+[2026-01-09 14:00:03] === Request started ===
+[2026-01-09 14:00:03] Request URI: /devel/index.php?return=index.html
+[2026-01-09 14:00:03] Return to: index.html
+[2026-01-09 14:00:03] Sanitized return path: index.html
+[2026-01-09 14:00:03] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 14:00:03] Fetch script completed in 68.27ms with exit code: 0
+[2026-01-09 14:00:03] Fetch script output:
+[2026-01-09 14:00:03]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 14:00:03]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 14:00:03]   > /app/t71.ch/public/devel
+[2026-01-09 14:00:03] Checking if HTML regeneration is needed...
+[2026-01-09 14:00:03] Needs regeneration: YES
+[2026-01-09 14:00:03] Found 2 XBEL files
+[2026-01-09 14:00:03]   Building site from 2 XBEL file(s)
+[2026-01-09 14:00:03]   Found 1 theme(s)
+[2026-01-09 14:00:03]   Parsed: Floccus-GICT.xbel (title: Floccus-GICT)
+[2026-01-09 14:00:03]   Parsed: Floccus-Personal.xbel (title: Floccus-Personal)
+[2026-01-09 14:00:03]   Writing HTML files to: /app/t71.ch/public/devel/dist
+[2026-01-09 14:00:03]   Generated index.html and subpages
+[2026-01-09 14:00:03] HTML files regenerated in 58.04ms
+[2026-01-09 14:00:03] Redirecting to: dist/index.html
+[2026-01-09 14:00:03] === Request completed successfully ===
+[2026-01-09 14:00:06] === Request started ===
+[2026-01-09 14:00:06] Request URI: /devel/index.php?return=index.html
+[2026-01-09 14:00:06] Return to: index.html
+[2026-01-09 14:00:06] Sanitized return path: index.html
+[2026-01-09 14:00:06] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 14:00:06] Fetch script completed in 62.27ms with exit code: 0
+[2026-01-09 14:00:06] Fetch script output:
+[2026-01-09 14:00:06]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 14:00:06]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 14:00:06]   > /app/t71.ch/public/devel
+[2026-01-09 14:00:06] Checking if HTML regeneration is needed...
+[2026-01-09 14:00:06] Needs regeneration: NO
+[2026-01-09 14:00:06] HTML files are up-to-date, skipping regeneration
+[2026-01-09 14:00:06] Redirecting to: dist/index.html
+[2026-01-09 14:00:06] === Request completed successfully ===
+[2026-01-09 14:00:48] === Request started ===
+[2026-01-09 14:00:48] Request URI: /devel/index.php?return=floccus-gict.html
+[2026-01-09 14:00:48] Return to: floccus-gict.html
+[2026-01-09 14:00:48] Sanitized return path: floccus-gict.html
+[2026-01-09 14:00:48] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 14:00:48] Fetch script completed in 42.89ms with exit code: 0
+[2026-01-09 14:00:48] Fetch script output:
+[2026-01-09 14:00:48]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 14:00:48]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 14:00:48]   > /app/t71.ch/public/devel
+[2026-01-09 14:00:48] Checking if HTML regeneration is needed...
+[2026-01-09 14:00:48] Needs regeneration: NO
+[2026-01-09 14:00:48] HTML files are up-to-date, skipping regeneration
+[2026-01-09 14:00:48] Redirecting to: dist/floccus-gict.html
+[2026-01-09 14:00:48] === Request completed successfully ===
+[2026-01-09 14:00:50] === Request started ===
+[2026-01-09 14:00:50] Request URI: /devel/index.php?return=floccus-gict.html
+[2026-01-09 14:00:50] Return to: floccus-gict.html
+[2026-01-09 14:00:50] Sanitized return path: floccus-gict.html
+[2026-01-09 14:00:50] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 14:00:50] Fetch script completed in 52.48ms with exit code: 0
+[2026-01-09 14:00:50] Fetch script output:
+[2026-01-09 14:00:50]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 14:00:50]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 14:00:50]   > /app/t71.ch/public/devel
+[2026-01-09 14:00:50] Checking if HTML regeneration is needed...
+[2026-01-09 14:00:50] Needs regeneration: NO
+[2026-01-09 14:00:50] HTML files are up-to-date, skipping regeneration
+[2026-01-09 14:00:50] Redirecting to: dist/floccus-gict.html
+[2026-01-09 14:00:50] === Request completed successfully ===
+[2026-01-09 14:02:12] === Request started ===
+[2026-01-09 14:02:12] Request URI: /devel/
+[2026-01-09 14:02:12] Return to: index.html
+[2026-01-09 14:02:12] Sanitized return path: index.html
+[2026-01-09 14:02:12] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 14:02:12] Fetch script completed in 47.17ms with exit code: 0
+[2026-01-09 14:02:12] Fetch script output:
+[2026-01-09 14:02:12]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 14:02:12]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 14:02:12]   > /app/t71.ch/public/devel
+[2026-01-09 14:02:12] Checking if HTML regeneration is needed...
+[2026-01-09 14:02:12] Needs regeneration: NO
+[2026-01-09 14:02:12] HTML files are up-to-date, skipping regeneration
+[2026-01-09 14:02:12] Redirecting to: dist/index.html
+[2026-01-09 14:02:12] === Request completed successfully ===
+[2026-01-09 14:02:14] === Request started ===
+[2026-01-09 14:02:14] Request URI: /devel/index.php
+[2026-01-09 14:02:14] Return to: index.html
+[2026-01-09 14:02:14] Sanitized return path: index.html
+[2026-01-09 14:02:14] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 14:02:14] Fetch script completed in 41ms with exit code: 0
+[2026-01-09 14:02:14] Fetch script output:
+[2026-01-09 14:02:14]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 14:02:14]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 14:02:14]   > /app/t71.ch/public/devel
+[2026-01-09 14:02:14] Checking if HTML regeneration is needed...
+[2026-01-09 14:02:14] Needs regeneration: NO
+[2026-01-09 14:02:14] HTML files are up-to-date, skipping regeneration
+[2026-01-09 14:02:14] Redirecting to: dist/index.html
+[2026-01-09 14:02:14] === Request completed successfully ===
+[2026-01-09 14:02:36] === Request started ===
+[2026-01-09 14:02:36] Request URI: /devel/index.php
+[2026-01-09 14:02:36] Return to: index.html
+[2026-01-09 14:02:36] Sanitized return path: index.html
+[2026-01-09 14:02:36] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 14:02:36] Fetch script completed in 45.83ms with exit code: 0
+[2026-01-09 14:02:36] Fetch script output:
+[2026-01-09 14:02:36]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 14:02:36]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 14:02:36]   > /app/t71.ch/public/devel
+[2026-01-09 14:02:36] Checking if HTML regeneration is needed...
+[2026-01-09 14:02:36] Needs regeneration: NO
+[2026-01-09 14:02:36] HTML files are up-to-date, skipping regeneration
+[2026-01-09 14:02:36] Redirecting to: dist/index.html
+[2026-01-09 14:02:36] === Request completed successfully ===
+[2026-01-09 14:05:07] === Request started ===
+[2026-01-09 14:05:07] Request URI: /devel/index.php?return=floccus-personal.html
+[2026-01-09 14:05:07] Return to: floccus-personal.html
+[2026-01-09 14:05:07] Sanitized return path: floccus-personal.html
+[2026-01-09 14:05:07] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 14:05:07] Fetch script completed in 61.75ms with exit code: 0
+[2026-01-09 14:05:07] Fetch script output:
+[2026-01-09 14:05:07]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 14:05:07]   > HEAD is now at 459e8d5 Floccus update: Floccus-Personal
+[2026-01-09 14:05:07]   > /app/t71.ch/public/devel
+[2026-01-09 14:05:07] Checking if HTML regeneration is needed...
+[2026-01-09 14:05:07] Needs regeneration: NO
+[2026-01-09 14:05:07] HTML files are up-to-date, skipping regeneration
+[2026-01-09 14:05:07] Redirecting to: dist/floccus-personal.html
+[2026-01-09 14:05:07] === Request completed successfully ===
+[2026-01-09 14:05:52] === Request started ===
+[2026-01-09 14:05:52] Request URI: /devel/
+[2026-01-09 14:05:52] Return to: index.html
+[2026-01-09 14:05:52] Sanitized return path: index.html
+[2026-01-09 14:05:52] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 14:05:52] Fetch script completed in 62.44ms with exit code: 0
+[2026-01-09 14:05:52] Fetch script output:
+[2026-01-09 14:05:52]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 14:05:52]   > HEAD is now at 962f6c1 Floccus update: Floccus-Personal
+[2026-01-09 14:05:52]   > /app/t71.ch/public/devel
+[2026-01-09 14:05:52] Checking if HTML regeneration is needed...
+[2026-01-09 14:05:52] Needs regeneration: YES
+[2026-01-09 14:05:52] Found 2 XBEL files
+[2026-01-09 14:05:52]   Building site from 2 XBEL file(s)
+[2026-01-09 14:05:52]   Found 1 theme(s)
+[2026-01-09 14:05:52]   Parsed: Floccus-GICT.xbel (title: Floccus-GICT)
+[2026-01-09 14:05:52]   Parsed: Floccus-Personal.xbel (title: Floccus-Personal)
+[2026-01-09 14:05:52]   Writing HTML files to: /app/t71.ch/public/devel/dist
+[2026-01-09 14:05:52]   Generated index.html and subpages
+[2026-01-09 14:05:52] HTML files regenerated in 38.08ms
+[2026-01-09 14:05:52] Redirecting to: dist/index.html
+[2026-01-09 14:05:52] === Request completed successfully ===
+[2026-01-09 14:07:26] === Request started ===
+[2026-01-09 14:07:26] Request URI: /devel/index.php?return=floccus-personal.html
+[2026-01-09 14:07:26] Return to: floccus-personal.html
+[2026-01-09 14:07:26] Sanitized return path: floccus-personal.html
+[2026-01-09 14:07:26] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 14:07:26] Fetch script completed in 35.24ms with exit code: 0
+[2026-01-09 14:07:26] Fetch script output:
+[2026-01-09 14:07:26]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 14:07:26]   > HEAD is now at 962f6c1 Floccus update: Floccus-Personal
+[2026-01-09 14:07:26]   > /app/t71.ch/public/devel
+[2026-01-09 14:07:26] Checking if HTML regeneration is needed...
+[2026-01-09 14:07:26] Needs regeneration: NO
+[2026-01-09 14:07:26] HTML files are up-to-date, skipping regeneration
+[2026-01-09 14:07:26] Redirecting to: dist/floccus-personal.html
+[2026-01-09 14:07:26] === Request completed successfully ===
+[2026-01-09 14:07:50] === Request started ===
+[2026-01-09 14:07:50] Request URI: /devel/index.php?return=floccus-personal.html
+[2026-01-09 14:07:50] Return to: floccus-personal.html
+[2026-01-09 14:07:50] Sanitized return path: floccus-personal.html
+[2026-01-09 14:07:50] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 14:07:50] Fetch script completed in 39.76ms with exit code: 0
+[2026-01-09 14:07:50] Fetch script output:
+[2026-01-09 14:07:50]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 14:07:50]   > HEAD is now at 962f6c1 Floccus update: Floccus-Personal
+[2026-01-09 14:07:50]   > /app/t71.ch/public/devel
+[2026-01-09 14:07:50] Checking if HTML regeneration is needed...
+[2026-01-09 14:07:50] Needs regeneration: NO
+[2026-01-09 14:07:50] HTML files are up-to-date, skipping regeneration
+[2026-01-09 14:07:50] Redirecting to: dist/floccus-personal.html
+[2026-01-09 14:07:50] === Request completed successfully ===
+[2026-01-09 14:09:37] === Request started ===
+[2026-01-09 14:09:37] Request URI: /devel/index.php?return=floccus-personal.html
+[2026-01-09 14:09:37] Return to: floccus-personal.html
+[2026-01-09 14:09:37] Sanitized return path: floccus-personal.html
+[2026-01-09 14:09:37] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 14:09:37] Fetch script completed in 4.6ms with exit code: 127
+[2026-01-09 14:09:37] Fetch script produced no output
+[2026-01-09 14:09:37] ERROR: Fetch script failed!
+[2026-01-09 14:09:55] === Request started ===
+[2026-01-09 14:09:55] Request URI: /devel/index.php?return=floccus-personal.html
+[2026-01-09 14:09:55] Return to: floccus-personal.html
+[2026-01-09 14:09:55] Sanitized return path: floccus-personal.html
+[2026-01-09 14:09:55] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 14:09:55] Fetch script completed in 7.38ms with exit code: 127
+[2026-01-09 14:09:55] Fetch script produced no output
+[2026-01-09 14:09:55] ERROR: Fetch script failed!
+[2026-01-09 14:15:49] === Request started ===
+[2026-01-09 14:15:49] Request URI: /devel/
+[2026-01-09 14:15:49] Return to: index.html
+[2026-01-09 14:15:49] Sanitized return path: index.html
+[2026-01-09 14:15:49] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 14:15:50] Fetch script completed in 62.35ms with exit code: 0
+[2026-01-09 14:15:50] Fetch script output:
+[2026-01-09 14:15:50]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 14:15:50]   > HEAD is now at ea19824 Floccus update: Floccus-Personal
+[2026-01-09 14:15:50]   > /app/t71.ch/public/devel
+[2026-01-09 14:15:50] Checking if HTML regeneration is needed...
+[2026-01-09 14:15:50] Needs regeneration: YES
+[2026-01-09 14:15:50] Found 2 XBEL files
+[2026-01-09 14:15:50]   Building site from 2 XBEL file(s)
+[2026-01-09 14:15:50]   Found 1 theme(s)
+[2026-01-09 14:15:50]   Parsed: Floccus-GICT.xbel (title: Floccus-GICT)
+[2026-01-09 14:15:50]   Parsed: Floccus-Personal.xbel (title: Floccus-Personal)
+[2026-01-09 14:15:50]   Writing HTML files to: /app/t71.ch/public/devel/dist
+[2026-01-09 14:15:50]   Generated index.html and subpages
+[2026-01-09 14:15:50] HTML files regenerated in 29.69ms
+[2026-01-09 14:15:50] Redirecting to: dist/index.html
+[2026-01-09 14:15:50] === Request completed successfully ===
+[2026-01-09 14:16:16] === Request started ===
+[2026-01-09 14:16:16] Request URI: /devel/index.php?return=floccus-gict.html
+[2026-01-09 14:16:16] Return to: floccus-gict.html
+[2026-01-09 14:16:16] Sanitized return path: floccus-gict.html
+[2026-01-09 14:16:16] Executing fetch script: ./TomsBookmarks/fetchForced.sh
+[2026-01-09 14:16:16] Fetch script completed in 57.66ms with exit code: 0
+[2026-01-09 14:16:16] Fetch script output:
+[2026-01-09 14:16:16]   > /app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
+[2026-01-09 14:16:16]   > HEAD is now at ea19824 Floccus update: Floccus-Personal
+[2026-01-09 14:16:16]   > /app/t71.ch/public/devel
+[2026-01-09 14:16:16] Checking if HTML regeneration is needed...
+[2026-01-09 14:16:16] Needs regeneration: NO
+[2026-01-09 14:16:16] HTML files are up-to-date, skipping regeneration
+[2026-01-09 14:16:16] Redirecting to: dist/floccus-gict.html
+[2026-01-09 14:16:16] === Request completed successfully ===

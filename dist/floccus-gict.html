@@ -15,25 +15,92 @@
     <div class="badge">Bookmarks</div>
     <div>
       <h1><a href="../index.php?return=floccus-gict.html" class="reload-link" title="Bookmarks neu laden">Floccus-GICT</a></h1>
-      <div class="updated">Updated 2026-01-09 13:38 UTC</div>
+      <div class="updated">Updated 2026-01-09 14:15 UTC</div>
     </div>
     <div class="header-actions">
-      <div class="theme-switch"><label for="theme-select">Style:</label><select id="theme-select" aria-label="Darstellung wählen"><option value="bookmarks-misty.css" selected>Misty</option></select></div>
       <a class="parent" href="index.html">↩ Zurück</a>
+      <button id="burger-menu-btn" class="burger-btn" aria-label="Menü öffnen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
+
+  <div id="burger-menu" class="burger-menu">
+    <div class="burger-menu-content">
+      <button id="burger-close" class="burger-close" aria-label="Menü schliessen">&times;</button>
+
+      <div class="menu-section">
+        <h3>Darstellung</h3>
+        <div class="theme-switch-menu"><label for="theme-select">Style:</label><select id="theme-select" aria-label="Darstellung wählen"><option value="bookmarks-misty.css" selected>Misty</option></select></div>
+      </div>
+
+      <div class="menu-section">
+        <h3>Aktionen</h3>
+        <button id="reload-btn" class="menu-button">
+          <span>🔄</span> Bookmarks neu laden
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>Reihenfolge</h3>
+        <button id="reset-order-btn" class="menu-button">
+          <span>↺</span> Reihenfolge zurücksetzen
+        </button>
+        <button id="export-order-btn" class="menu-button">
+          <span>⬇</span> Reihenfolge exportieren
+        </button>
+        <button id="import-order-btn" class="menu-button">
+          <span>⬆</span> Reihenfolge importieren
+        </button>
+        <input type="file" id="import-order-input" accept=".json" style="display: none;">
+      </div>
+    </div>
+  </div>
   <main>
     <section>
       <h2>Bookmarks</h2>
-      <div class="tile-grid"><a class="tile bookmark-tile" href="https://pad.t71.ch/p/gict" target="_blank" rel="noreferrer noopener"><div class="tile-title">Etherpad</div></a><a class="tile bookmark-tile" href="https://portal.gict.ch/wm/app-ServiceDesk/search-page/c5cb53c7-d28b-eb11-8aa9-0050569d2aa8/nofilter/" target="_blank" rel="noreferrer noopener"><div class="tile-title">M42</div></a><a class="tile bookmark-tile" href="https://dms.gict.ch/IT-Betrieb/_layouts/15/WopiFrame2.aspx?sourcedoc=%7B25D85215-9F0A-4127-8DF5-95087A39A218%7D&amp;file=Netzliste.xlsx&amp;action=default&amp;DefaultItemOpen=1" target="_blank" rel="noreferrer noopener"><div class="tile-title">Netzliste.xlsx</div></a><a class="tile bookmark-tile" href="https://claude.ai/new" target="_blank" rel="noreferrer noopener"><div class="tile-title">Claude</div></a><a class="tile bookmark-tile" href="https://chatgpt.com/?oai-dm=1" target="_blank" rel="noreferrer noopener"><div class="tile-title">ChatGPT</div></a><a class="tile bookmark-tile" href="https://www.deepseek.com/" target="_blank" rel="noreferrer noopener"><div class="tile-title">DeepSeek</div></a><a class="tile bookmark-tile" href="https://claude.ai/chat/788c61d9-cfa8-411b-80b5-b56a82c4d4d5" target="_blank" rel="noreferrer noopener"><div class="tile-title">Alpine Docker Image with Sway, Chromium, and Emacs - Claude</div></a><a class="tile bookmark-tile" href="https://claude.ai/chat/7e452f9e-b6ca-4ec4-833a-501736a7d293" target="_blank" rel="noreferrer noopener"><div class="tile-title">Shutting Down Docker Containers from Within - Claude</div></a><a class="tile bookmark-tile" href="https://github.com/RecursiveFaith/setup.sh" target="_blank" rel="noreferrer noopener"><div class="tile-title">GitHub - RecursiveFaith/setup.sh: (in progress) Minimalist Linux environments for daily driving &amp;&amp; generative emulation</div></a><a class="tile bookmark-tile" href="https://webssh.t71.ch/?hostname=coyote.natureforce.ch&amp;username=tom&amp;port=3022" target="_blank" rel="noreferrer noopener"><div class="tile-title">ssh coyote</div></a><a class="tile bookmark-tile" href="https://github.com/hullarb/ssheasy" target="_blank" rel="noreferrer noopener"><div class="tile-title">hullarb/ssheasy: ssh, sftp client running in the browser powered by golang and wasm</div></a></div>
+      <div class="tile-grid"><a class="tile bookmark-tile" href="https://pad.t71.ch/p/gict" target="_blank" rel="noreferrer noopener" draggable="true" data-id="307"><div class="tile-title">Etherpad</div></a><a class="tile bookmark-tile" href="https://portal.gict.ch/wm/app-ServiceDesk/search-page/c5cb53c7-d28b-eb11-8aa9-0050569d2aa8/nofilter/" target="_blank" rel="noreferrer noopener" draggable="true" data-id="306"><div class="tile-title">M42</div></a><a class="tile bookmark-tile" href="https://dms.gict.ch/IT-Betrieb/_layouts/15/WopiFrame2.aspx?sourcedoc=%7B25D85215-9F0A-4127-8DF5-95087A39A218%7D&amp;file=Netzliste.xlsx&amp;action=default&amp;DefaultItemOpen=1" target="_blank" rel="noreferrer noopener" draggable="true" data-id="285"><div class="tile-title">Netzliste.xlsx</div></a><a class="tile bookmark-tile" href="https://claude.ai/new" target="_blank" rel="noreferrer noopener" draggable="true" data-id="279"><div class="tile-title">Claude</div></a><a class="tile bookmark-tile" href="https://chatgpt.com/?oai-dm=1" target="_blank" rel="noreferrer noopener" draggable="true" data-id="281"><div class="tile-title">ChatGPT</div></a><a class="tile bookmark-tile" href="https://www.deepseek.com/" target="_blank" rel="noreferrer noopener" draggable="true" data-id="280"><div class="tile-title">DeepSeek</div></a><a class="tile bookmark-tile" href="https://claude.ai/chat/788c61d9-cfa8-411b-80b5-b56a82c4d4d5" target="_blank" rel="noreferrer noopener" draggable="true" data-id="295"><div class="tile-title">Alpine Docker Image with Sway, Chromium, and Emacs - Claude</div></a><a class="tile bookmark-tile" href="https://claude.ai/chat/7e452f9e-b6ca-4ec4-833a-501736a7d293" target="_blank" rel="noreferrer noopener" draggable="true" data-id="297"><div class="tile-title">Shutting Down Docker Containers from Within - Claude</div></a><a class="tile bookmark-tile" href="https://github.com/RecursiveFaith/setup.sh" target="_blank" rel="noreferrer noopener" draggable="true" data-id="298"><div class="tile-title">GitHub - RecursiveFaith/setup.sh: (in progress) Minimalist Linux environments for daily driving &amp;&amp; generative emulation</div></a><a class="tile bookmark-tile" href="https://webssh.t71.ch/?hostname=coyote.natureforce.ch&amp;username=tom&amp;port=3022" target="_blank" rel="noreferrer noopener" draggable="true" data-id="302"><div class="tile-title">ssh coyote</div></a><a class="tile bookmark-tile" href="https://github.com/hullarb/ssheasy" target="_blank" rel="noreferrer noopener" draggable="true" data-id="303"><div class="tile-title">hullarb/ssheasy: ssh, sftp client running in the browser powered by golang and wasm</div></a></div>
     </section>
     <section>
       <h2>Ordner</h2>
-      <div class="tile-grid"><a class="tile folder-tile" href="administratives.html"><div class="tile-title">Administratives</div><div class="tile-meta">Ordner öffnen</div></a><a class="tile folder-tile" href="operation-s.html"><div class="tile-title">Operation s</div><div class="tile-meta">Ordner öffnen</div></a><a class="tile folder-tile" href="tools.html"><div class="tile-title">Tools</div><div class="tile-meta">Ordner öffnen</div></a><a class="tile folder-tile" href="ivo-s-order.html"><div class="tile-title">Ivo&#039;s Order</div><div class="tile-meta">Ordner öffnen</div></a><a class="tile folder-tile" href="knowhow.html"><div class="tile-title">KnowHow</div><div class="tile-meta">Ordner öffnen</div></a><a class="tile folder-tile" href="clientbasis.html"><div class="tile-title">ClientBasis</div><div class="tile-meta">Ordner öffnen</div></a><a class="tile folder-tile" href="operations.html"><div class="tile-title">Operations</div><div class="tile-meta">Ordner öffnen</div></a></div>
+      <div class="tile-grid"><a class="tile folder-tile" href="administratives.html" draggable="true" data-id="194"><div class="tile-title">Administratives</div><div class="tile-meta">Ordner öffnen</div></a><a class="tile folder-tile" href="operation-s.html" draggable="true" data-id="289"><div class="tile-title">Operation s</div><div class="tile-meta">Ordner öffnen</div></a><a class="tile folder-tile" href="tools.html" draggable="true" data-id="181"><div class="tile-title">Tools</div><div class="tile-meta">Ordner öffnen</div></a><a class="tile folder-tile" href="ivo-s-order.html" draggable="true" data-id="126"><div class="tile-title">Ivo&#039;s Order</div><div class="tile-meta">Ordner öffnen</div></a><a class="tile folder-tile" href="knowhow.html" draggable="true" data-id="195"><div class="tile-title">KnowHow</div><div class="tile-meta">Ordner öffnen</div></a><a class="tile folder-tile" href="clientbasis.html" draggable="true" data-id="196"><div class="tile-title">ClientBasis</div><div class="tile-meta">Ordner öffnen</div></a><a class="tile folder-tile" href="operations.html" draggable="true" data-id="288"><div class="tile-title">Operations</div><div class="tile-meta">Ordner öffnen</div></a></div>
     </section>
   </main>
   <script>
     (() => {
+      // Burger menu
+      const burgerBtn = document.getElementById("burger-menu-btn");
+      const burgerMenu = document.getElementById("burger-menu");
+      const burgerClose = document.getElementById("burger-close");
+
+      function openMenu() {
+        burgerMenu.classList.add("open");
+      }
+
+      function closeMenu() {
+        burgerMenu.classList.remove("open");
+      }
+
+      burgerBtn.addEventListener("click", openMenu);
+      burgerClose.addEventListener("click", closeMenu);
+
+      // Close menu when clicking outside
+      burgerMenu.addEventListener("click", (e) => {
+        if (e.target === burgerMenu) {
+          closeMenu();
+        }
+      });
+
+      // Close menu on Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && burgerMenu.classList.contains("open")) {
+          closeMenu();
+        }
+      });
+
+      // Theme switcher
       const themes = [["bookmarks-misty.css","Misty"]];
       const select = document.getElementById("theme-select");
       const link = document.getElementById("themeStylesheet");
@@ -47,6 +114,161 @@
         const value = select.value;
         link.href = basePath + value;
         localStorage.setItem("bookmarkTheme", value);
+      });
+
+      // Drag & drop reordering
+      const currentPage = "floccus-gict.html";
+      const orderKey = "tileOrder_" + currentPage;
+
+      // Apply saved order
+      function applyOrder() {
+        const savedOrder = localStorage.getItem(orderKey);
+        if (!savedOrder) return;
+
+        const order = JSON.parse(savedOrder);
+        const grids = document.querySelectorAll(".tile-grid");
+
+        grids.forEach(grid => {
+          const tiles = Array.from(grid.querySelectorAll(".tile[data-id]"));
+          const tileMap = new Map(tiles.map(t => [t.dataset.id, t]));
+
+          // Reorder tiles based on saved order
+          order.forEach(id => {
+            const tile = tileMap.get(id);
+            if (tile && tile.parentNode === grid) {
+              grid.appendChild(tile);
+            }
+          });
+        });
+      }
+
+      // Save current order
+      function saveOrder() {
+        const grids = document.querySelectorAll(".tile-grid");
+        const order = [];
+
+        grids.forEach(grid => {
+          const tiles = grid.querySelectorAll(".tile[data-id]");
+          tiles.forEach(tile => {
+            if (tile.dataset.id) {
+              order.push(tile.dataset.id);
+            }
+          });
+        });
+
+        localStorage.setItem(orderKey, JSON.stringify(order));
+      }
+
+      // Drag & drop handlers
+      let draggedElement = null;
+
+      document.addEventListener("dragstart", (e) => {
+        if (e.target.classList.contains("tile") && e.target.dataset.id) {
+          draggedElement = e.target;
+          e.target.style.opacity = "0.5";
+        }
+      });
+
+      document.addEventListener("dragend", (e) => {
+        if (e.target.classList.contains("tile")) {
+          e.target.style.opacity = "";
+          draggedElement = null;
+        }
+      });
+
+      document.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        const target = e.target.closest(".tile");
+        if (target && target.dataset.id && draggedElement && target !== draggedElement) {
+          const grid = target.parentNode;
+          if (grid.classList.contains("tile-grid") && draggedElement.parentNode === grid) {
+            const rect = target.getBoundingClientRect();
+            const midpoint = rect.left + rect.width / 2;
+
+            if (e.clientX < midpoint) {
+              grid.insertBefore(draggedElement, target);
+            } else {
+              grid.insertBefore(draggedElement, target.nextSibling);
+            }
+          }
+        }
+      });
+
+      document.addEventListener("drop", (e) => {
+        e.preventDefault();
+        saveOrder();
+      });
+
+      // Apply saved order on load
+      applyOrder();
+
+      // Reload button
+      document.getElementById("reload-btn").addEventListener("click", () => {
+        window.location.href = "../index.php?return=floccus-gict.html";
+      });
+
+      // Reset order button
+      document.getElementById("reset-order-btn").addEventListener("click", () => {
+        if (confirm("Möchten Sie die Reihenfolge wirklich zurücksetzen?")) {
+          localStorage.removeItem(orderKey);
+          location.reload();
+        }
+      });
+
+      // Export order button
+      document.getElementById("export-order-btn").addEventListener("click", () => {
+        const savedOrder = localStorage.getItem(orderKey);
+        if (!savedOrder) {
+          alert("Keine gespeicherte Reihenfolge vorhanden.");
+          return;
+        }
+
+        const data = {
+          page: currentPage,
+          order: JSON.parse(savedOrder),
+          exported: new Date().toISOString()
+        };
+
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "tile-order-" + currentPage.replace(".html", "") + ".json";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+
+      // Import order button
+      document.getElementById("import-order-btn").addEventListener("click", () => {
+        document.getElementById("import-order-input").click();
+      });
+
+      document.getElementById("import-order-input").addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          try {
+            const data = JSON.parse(event.target.result);
+
+            if (!data.order || !Array.isArray(data.order)) {
+              alert("Ungültiges Dateiformat.");
+              return;
+            }
+
+            localStorage.setItem(orderKey, JSON.stringify(data.order));
+            location.reload();
+          } catch (err) {
+            alert("Fehler beim Laden der Datei: " + err.message);
+          }
+        };
+        reader.readAsText(file);
+
+        // Reset input so same file can be selected again
+        e.target.value = "";
       });
     })();
   </script>
