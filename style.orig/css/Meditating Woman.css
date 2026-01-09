@@ -1,0 +1,92 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2b2a28; /* Very dark gray to match the twilight feel */
+    color: #e5dcc2; /* Soft warm beige for text */
+    background-image: url('../img/MeditatingWoman.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/* Header and Title Styling */
+h1 {
+    margin: 0;
+    padding: 5px;
+    color: #c2a96d; /* Warm muted gold to reflect the soft light of sunset */
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(43, 42, 40, 0.6); /* Semi-transparent dark overlay */
+    padding: 5px;
+    border-radius: 8px;
+}
+
+/* CSS Selector styling */
+.css-selector {
+    margin-right: 10px;
+}
+
+/* Column and Row Layout */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.column {
+    flex: 33.33%;
+    padding: 10px;
+}
+@media screen and (max-width: 768px) {
+    .column {
+        flex: 100%;
+    }
+}
+
+/* Folder and Bookmark Styling */
+.folder, .bookmark {
+    background-color: rgba(55, 54, 52, 0.8); /* Dark muted brown for a natural feel */
+    padding: 5px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+.bookmark a {
+    text-decoration: none;
+    color: #c2a96d; /* Soft gold for link color */
+    font-weight: bold;
+}
+.bookmark a:hover {
+    text-decoration: underline;
+}
+.bookmark-desc {
+    font-size: 0.9em;
+    color: #e5dcc2; /* Soft beige for description text */
+}
+
+/* Collapsible Button Styling */
+.collapsible, .collapsible-file, .collapsible-button {
+    background-color: #3b3a37; /* Dark brownish-gray for a warm, grounded look */
+    color: #ffffff;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    border-radius: 8px;
+}
+.active, .collapsible:hover, .collapsible-file:hover {
+    background-color: #544f47; /* Slightly lighter warm gray for hover effect */
+}
+
+/* Collapsible Content Styling */
+.collapsible-content, .content, .content-file {
+    display: none;
+    padding: 10px;
+    overflow: hidden;
+    background-color: rgba(55, 54, 52, 0.7); /* Soft, transparent dark brown */
+    margin-top: 5px;
+    border-radius: 8px;
+}

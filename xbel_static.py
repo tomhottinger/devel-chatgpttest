@@ -75,6 +75,35 @@ def parse_xbel_file(path: Path) -> Folder:
 
 # Rendering ----------------------------------------------------------------------
 
+def _discover_themes(script_dir: Path) -> list[tuple[str, str]]:
+    """
+    Scan the style/css directory for theme CSS files and return a list of
+    (filename, display_name) tuples. Only includes files matching the pattern
+    'bookmarks-*.css', sorted alphabetically by display name.
+    Excludes 'bookmarks-base.css' as it's the base stylesheet, not a theme.
+    """
+    css_dir = script_dir / "style" / "css"
+    if not css_dir.exists():
+        return []
+
+    themes = []
+    for css_file in css_dir.glob("bookmarks-*.css"):
+        filename = css_file.name
+
+        # Skip the base stylesheet
+        if filename == "bookmarks-base.css":
+            continue
+
+        # Convert filename to display name: bookmarks-cosmic-traveler.css -> Cosmic Traveler
+        name_part = filename.replace("bookmarks-", "").replace(".css", "")
+        display_name = name_part.replace("-", " ").title()
+        themes.append((filename, display_name))
+
+    # Sort by display name for consistent ordering
+    themes.sort(key=lambda x: x[1])
+    return themes
+
+
 def _format_timestamp(value: str | None) -> str | None:
     if not value:
         return None
@@ -114,38 +143,12 @@ def _render_subfolder_tile(folder: Folder) -> str:
     )
 
 
-def render_page(folder: Folder, page_title: str, parent_link: str | None) -> str:
+def render_page(folder: Folder, page_title: str, parent_link: str | None, themes: list[tuple[str, str]], current_page: str = "index.html") -> str:
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    themes = [
-        ("bookmarks-misty.css", "Misty Forrest"),
-        ("bookmarks-aurora.css", "Aurora"),
-        ("bookmarks-beach.css", "Beach Sunset"),
-        ("bookmarks-amvf.css", "AMVF"),
-        ("bookmarks-apocalypse.css", "Apocalypse"),
-        ("bookmarks-beach-beauty.css", "Beach Beauty"),
-        ("bookmarks-beach-beauty-old.css", "Beach Beauty (old)"),
-        ("bookmarks-beauty.css", "Beauty"),
-        ("bookmarks-blue-beach.css", "Blue Beach"),
-        ("bookmarks-bluechick.css", "Bluechick"),
-        ("bookmarks-bluechick2.css", "Bluechick 2"),
-        ("bookmarks-climber.css", "Climber"),
-        ("bookmarks-cosmic-traveler.css", "Cosmic Traveler"),
-        ("bookmarks-dark-cat.css", "Dark Cat"),
-        ("bookmarks-fat-cat.css", "Fat Cat"),
-        ("bookmarks-galactic-joshua.css", "Galactic Joshua"),
-        ("bookmarks-golden-gate.css", "Golden Gate"),
-        ("bookmarks-healer.css", "Healer"),
-        ("bookmarks-it-chick.css", "IT-Chick"),
-        ("bookmarks-it-guy.css", "IT-Guy"),
-        ("bookmarks-la-sera-sper-il-lag.css", "La Sera sper il Lag"),
-        ("bookmarks-last-hope.css", "Last Hope"),
-        ("bookmarks-meditating-woman.css", "Meditating Woman"),
-        ("bookmarks-meditation.css", "Meditation"),
-        ("bookmarks-red-fox.css", "Red Fox"),
-        ("bookmarks-red-fox-old.css", "Red Fox (old)"),
-        ("bookmarks-the-fly.css", "The Fly"),
-        ("bookmarks-windy-beach.css", "Windy Beach"),
-    ]
+
+    # Use discovered themes or fallback to a default if none found
+    if not themes:
+        themes = [("bookmarks-base.css", "Default")]
     themes_js = json.dumps(themes)
     theme_options = "".join(
         f'<option value="{escape(filename)}"{" selected" if i == 0 else ""}>{escape(label)}</option>'
@@ -157,6 +160,9 @@ def render_page(folder: Folder, page_title: str, parent_link: str | None) -> str
         f'<select id="theme-select" aria-label="Darstellung wählen">{theme_options}</select>'
         "</div>"
     )
+
+    # Create reload link
+    reload_url = f"../index.php?return={escape(current_page)}"
 
     bookmark_items = "".join(
         _render_bookmark_tile(child) for child in folder.children if isinstance(child, Bookmark)
@@ -180,20 +186,26 @@ def render_page(folder: Folder, page_title: str, parent_link: str | None) -> str
         f'<a class="parent" href="{escape(parent_link)}">↩ Zurück</a>' if parent_link else ""
     )
 
+    # Use the first theme in the list as the default initial theme
+    default_theme = themes[0][0] if themes else "bookmarks-base.css"
+
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>{escape(folder.title)} – {escape(page_title)}</title>
   <link rel="stylesheet" href="../style/css/bookmarks-base.css">
-  <link id="themeStylesheet" rel="stylesheet" href="../style/css/bookmarks-misty.css">
+  <link id="themeStylesheet" rel="stylesheet" href="../style/css/{escape(default_theme)}">
 </head>
 <body>
   <header>
     <div class="badge">Bookmarks</div>
     <div>
-      <h1>{escape(folder.title)}</h1>
+      <h1><a href="{reload_url}" class="reload-link" title="Bookmarks neu laden">{escape(folder.title)}</a></h1>
       <div class="updated">Updated {escape(now)}</div>
     </div>
     <div class="header-actions">
@@ -265,22 +277,26 @@ def _assign_slugs(root: Folder) -> None:
     walk(root)
 
 
-def _write_folder_pages(folder: Folder, output_dir: Path, page_title: str, parent_link: str | None) -> None:
+def _write_folder_pages(folder: Folder, output_dir: Path, page_title: str, parent_link: str | None, themes: list[tuple[str, str]]) -> None:
     assert folder.slug, "Slug must be assigned before writing pages"
-    html = render_page(folder, page_title, parent_link)
+    html = render_page(folder, page_title, parent_link, themes, current_page=folder.slug)
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / folder.slug).write_text(html, encoding="utf-8")
 
     for child in folder.children:
         if isinstance(child, Folder):
-            _write_folder_pages(child, output_dir, page_title, parent_link=folder.slug)
+            _write_folder_pages(child, output_dir, page_title, parent_link=folder.slug, themes=themes)
 
 
 def build_site(xbel_paths: list[Path], output_dir: Path, page_title: str) -> Path:
+    # Discover available themes from the style/css directory
+    script_dir = Path(__file__).parent
+    themes = _discover_themes(script_dir)
+
     folders = [parse_xbel_file(path) for path in xbel_paths]
     root = Folder(title=page_title, children=folders)
     _assign_slugs(root)
-    _write_folder_pages(root, output_dir, page_title, parent_link=None)
+    _write_folder_pages(root, output_dir, page_title, parent_link=None, themes=themes)
     return output_dir / "index.html"
 
 

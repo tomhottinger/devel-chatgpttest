@@ -1,0 +1,92 @@
+/* General Body Styling with Background Adjustment */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1b1b1b;
+    color: #e0e0e0;
+    background-image: url('../img/bluechick2.webp');
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-attachment: fixed;
+    background-position: center; /* Centers the background image */
+}
+
+/* Header and Title Styling */
+h1 {
+    margin: 0;
+    padding: 5px;
+    color: #00ffff;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for readability */
+    padding: 5px;
+    border-radius: 8px;
+}
+
+/* CSS Selector styling */
+.css-selector {
+    margin-right: 10px;
+}
+
+/* Column and Row Layout */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.column {
+    flex: 33.33%;
+    padding: 10px;
+}
+@media screen and (max-width: 768px) {
+    .column {
+        flex: 100%;
+    }
+}
+
+/* Folder and Bookmark Styling */
+.folder, .bookmark {
+    background-color: rgba(34, 34, 34, 0.8); /* Slightly transparent, dark background */
+    padding: 5px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+.bookmark a {
+    text-decoration: none;
+    color: #00ffff; /* Matching the color scheme */
+    font-weight: bold;
+}
+.bookmark a:hover {
+    text-decoration: underline;
+}
+.bookmark-desc {
+    font-size: 0.9em;
+    color: #e0e0e0;
+}
+
+/* Collapsible Button and Content Styling */
+.collapsible, .collapsible-file, .collapsible-button {
+    background-color: #ff69b4; /* Pink tone matching the theme */
+    color: #ffffff;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    border-radius: 8px;
+}
+.active, .collapsible:hover, .collapsible-file:hover, .collapsible-button:hover {
+    background-color: #ff1493; /* Darker shade for hover effect */
+}
+
+/* Collapsible Content Styling */
+.collapsible-content, .content, .content-file {
+    display: none;
+    padding: 10px;
+    overflow: hidden;
+    background-color: rgba(34, 34, 34, 0.8); /* Slightly transparent dark background */
+    margin-top: 5px;
+    border-radius: 8px;
+}

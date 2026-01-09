@@ -1,0 +1,15 @@
+:root {
+  --bg: #e6f2e0;
+  --text: #2d3c2f;
+  --accent: #2d3c2f;
+  --link: #2d3c2f;
+  --muted: color-mix(in srgb, var(--text) 70%, #7a7a7a 30%);
+  --panel: color-mix(in srgb, var(--bg) 70%, #000 30%);
+  --panel-strong: color-mix(in srgb, var(--bg) 80%, #000 20%);
+  --shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+  --blur: 10px;
+  --tile-height: 120px;
+  --bg-image-url: url("../img/Beauty.png");
+  --overlay-1: color-mix(in srgb, var(--bg) 50%, transparent);
+  --overlay-2: color-mix(in srgb, var(--bg) 70%, transparent);
+}
