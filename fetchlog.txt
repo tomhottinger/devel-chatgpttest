@@ -1,3 +1,0 @@
-/app/t71.ch/public/devel/TomsBookmarks /app/t71.ch/public/devel
-HEAD is now at a457c7f Floccus update: Floccus-Work
-/app/t71.ch/public/devel
