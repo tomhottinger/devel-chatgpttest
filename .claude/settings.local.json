@@ -4,7 +4,10 @@
       "Bash(ls:*)",
       "Bash(python3:*)",
       "Bash(bash -lc:*)",
-      "Bash(php index.php:*)"
+      "Bash(php index.php:*)",
+      "Bash(git remote:*)",
+      "Bash(getent:*)",
+      "Bash(chmod:*)"
     ]
   }
 }

@@ -34,15 +34,20 @@ function logMessage(string $message): void {
 
 logMessage('=== Request started ===');
 logMessage('Request URI: ' . ($_SERVER['REQUEST_URI'] ?? 'unknown'));
-logMessage('Return to: ' . ($_GET['return'] ?? 'index.html'));
+logMessage('Return parameter: ' . ($_GET['return'] ?? 'empty'));
 
-$cmd1 = './TomsBookmarks/fetchForced.sh';
-$lastLine = '';
-$output = [];
-$exitCode = 0;
+// Get the return page from the query parameter
+$returnTo = $_GET['return'] ?? '';
+$hasReturnParam = !empty($returnTo);
 
-// Get the return page from the query parameter (default to index.html)
-$returnTo = $_GET['return'] ?? 'index.html';
+// If no return parameter, redirect to default page
+if (!$hasReturnParam) {
+    logMessage("No return parameter provided, redirecting to default page");
+    logMessage('=== Request completed ===');
+    header('Location: dist/index.html', true, 302);
+    exit;
+}
+
 // Sanitize the return path to prevent directory traversal
 $returnTo = basename($returnTo);
 if (!preg_match('/^[a-z0-9_-]+\.html$/i', $returnTo)) {
@@ -50,94 +55,126 @@ if (!preg_match('/^[a-z0-9_-]+\.html$/i', $returnTo)) {
 }
 logMessage("Sanitized return path: $returnTo");
 
-// ALWAYS run the fetch script to get latest bookmarks
-logMessage("Executing fetch script: $cmd1");
-$startTime = microtime(true);
-exec('bash -lc ' . escapeshellarg($cmd1), $output, $exitCode);
-$duration = round((microtime(true) - $startTime) * 1000, 2);
-logMessage("Fetch script completed in {$duration}ms with exit code: $exitCode");
+// When return parameter is provided: delete dist files, pull from git, then regenerate
+$output = [];
+$exitCode = 0;
 
-// Log fetch output line by line
+// Step 1: Delete all HTML files in dist directory
+logMessage("Step 1: Deleting HTML files in dist directory");
+$distDir = __DIR__ . '/dist';
+if (is_dir($distDir)) {
+    $htmlFiles = glob($distDir . '/*.html');
+    $deletedCount = 0;
+    foreach ($htmlFiles as $htmlFile) {
+        if (unlink($htmlFile)) {
+            $deletedCount++;
+        }
+    }
+    logMessage("Deleted $deletedCount HTML files from dist directory");
+} else {
+    logMessage("Dist directory does not exist, creating it");
+    mkdir($distDir, 0755, true);
+}
+
+// Step 2: Pull latest from git remote for TomsBookmarks
+logMessage("Step 2: Pulling latest from git remote for TomsBookmarks");
+$bookmarksDir = __DIR__ . '/TomsBookmarks';
+$startTime = microtime(true);
+
+// Change to the bookmarks directory and execute git commands
+// Using chdir() instead of cd in shell for better reliability
+$originalDir = getcwd();
+if (!chdir($bookmarksDir)) {
+    logMessage("ERROR: Could not change to bookmarks directory");
+    http_response_code(500);
+    echo '<pre>Failed to access TomsBookmarks directory</pre>';
+    exit;
+}
+
+// Execute git fetch and reset
+// Set environment variables to ensure proper DNS resolution and PATH
+putenv('PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin');
+putenv('HOME=' . getenv('HOME'));
+
+// Workaround for DNS resolution issues in Docker container:
+// Use git's resolve option to specify IP address for hostname
+logMessage("Setting git resolve to use IP 95.179.154.27 for git.7773.ch");
+
+// Git supports --resolve option (like curl's --resolve) since version 2.18
+// Format: --resolve=<host>:<port>:<ip>
+$gitResolve = '--resolve=git.7773.ch:443:95.179.154.27';
+
+$gitCommands = [
+    "git -c http.curloptResolve=\"git.7773.ch:443:95.179.154.27\" fetch --all 2>&1",
+    'git reset --hard origin/main 2>&1'
+];
+
+foreach ($gitCommands as $cmd) {
+    $cmdOutput = [];
+    $cmdExitCode = 0;
+    logMessage("Executing: $cmd");
+    exec($cmd, $cmdOutput, $cmdExitCode);
+    $output = array_merge($output, $cmdOutput);
+
+    if ($cmdExitCode !== 0) {
+        $exitCode = $cmdExitCode;
+        logMessage("ERROR: Git command failed with exit code $cmdExitCode");
+        logMessage("Command: $cmd");
+
+        // Log detailed output for debugging
+        if (!empty($cmdOutput)) {
+            logMessage("Command output:");
+            foreach ($cmdOutput as $line) {
+                logMessage("  > " . $line);
+            }
+        }
+        break;
+    }
+}
+
+// Change back to original directory
+chdir($originalDir);
+
+$duration = round((microtime(true) - $startTime) * 1000, 2);
+logMessage("Git pull completed in {$duration}ms with exit code: $exitCode");
+
+// Log git output line by line
 if (!empty($output)) {
-    logMessage("Fetch script output:");
+    logMessage("Git output:");
     foreach ($output as $line) {
         logMessage("  > " . $line);
     }
 } else {
-    logMessage("Fetch script produced no output");
+    logMessage("Git commands produced no output");
 }
 
 if ($exitCode !== 0) {
-    // Fetch failed, stop here
-    logMessage("ERROR: Fetch script failed!");
+    // Git pull failed, stop here
+    logMessage("ERROR: Git pull failed!");
     http_response_code(500);
-    echo '<pre>' . htmlspecialchars("Failed to fetch bookmarks (exit $exitCode)\n" . implode("\n", $output), ENT_QUOTES, 'UTF-8') . '</pre>';
+    echo '<pre>' . htmlspecialchars("Failed to pull bookmarks from git (exit $exitCode)\n" . implode("\n", $output), ENT_QUOTES, 'UTF-8') . '</pre>';
     exit;
 }
 
-// Check if we need to regenerate HTML files
-function needsRegeneration(string $baseDir): bool {
-    $xbelFiles = glob($baseDir . '/TomsBookmarks/*.xbel');
-    $distDir = $baseDir . '/dist';
-
-    if (empty($xbelFiles)) {
-        return false; // No source files, nothing to do
-    }
-
-    // If dist directory doesn't exist or is empty, we need to generate
-    if (!is_dir($distDir) || count(glob($distDir . '/*.html')) === 0) {
-        return true;
-    }
-
-    // Get the newest XBEL modification time
-    $newestXbelTime = 0;
-    foreach ($xbelFiles as $xbelFile) {
-        $mtime = filemtime($xbelFile);
-        if ($mtime > $newestXbelTime) {
-            $newestXbelTime = $mtime;
-        }
-    }
-
-    // Get the oldest HTML modification time
-    $oldestHtmlTime = PHP_INT_MAX;
-    $htmlFiles = glob($distDir . '/*.html');
-    foreach ($htmlFiles as $htmlFile) {
-        $mtime = filemtime($htmlFile);
-        if ($mtime < $oldestHtmlTime) {
-            $oldestHtmlTime = $mtime;
-        }
-    }
-
-    // Regenerate if any XBEL file is newer than the oldest HTML file
-    return $newestXbelTime > $oldestHtmlTime;
-}
-
-// Generate HTML if needed
-logMessage("Checking if HTML regeneration is needed...");
-$needsRegen = needsRegeneration(__DIR__);
-logMessage("Needs regeneration: " . ($needsRegen ? 'YES' : 'NO'));
+// Step 3: Regenerate HTML files (always regenerate after git pull)
+logMessage("Step 3: Regenerating HTML files from XBEL sources");
 
 require_once __DIR__ . '/xbel_static.php';
 
 try {
-    if ($needsRegen) {
-        $xbelFiles = glob(__DIR__ . '/TomsBookmarks/*.xbel');
-        logMessage("Found " . count($xbelFiles) . " XBEL files");
+    $xbelFiles = glob(__DIR__ . '/TomsBookmarks/*.xbel');
+    logMessage("Found " . count($xbelFiles) . " XBEL files");
 
-        if (empty($xbelFiles)) {
-            throw new Exception('No XBEL files found');
-        }
-
-        $startTime = microtime(true);
-        buildSite($xbelFiles, __DIR__ . '/dist', 'GICT Bookmarks');
-        $duration = round((microtime(true) - $startTime) * 1000, 2);
-
-        logMessage("HTML files regenerated in {$duration}ms");
-        $output[] = 'HTML files regenerated';
-    } else {
-        logMessage("HTML files are up-to-date, skipping regeneration");
-        $output[] = 'HTML files are up-to-date, skipping regeneration';
+    if (empty($xbelFiles)) {
+        throw new Exception('No XBEL files found');
     }
+
+    $startTime = microtime(true);
+    buildSite($xbelFiles, __DIR__ . '/dist', 'GICT Bookmarks');
+    $duration = round((microtime(true) - $startTime) * 1000, 2);
+
+    logMessage("HTML files regenerated in {$duration}ms");
+    $output[] = 'HTML files regenerated';
     $exitCode = 0;
 } catch (Exception $e) {
     logMessage("ERROR: " . $e->getMessage());
